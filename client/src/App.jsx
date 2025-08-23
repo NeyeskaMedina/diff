@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "./assets/utils/Theme.jsx";
 import Home from "./view/Home/Home.jsx"
+import Tienda from "./view/Tienda/Tienda.jsx";
 import NavbarDiff from "./components/navbar/NavbarDiff.jsx";
 import HeaderSection from "./components/section/headerSection/HeaderSection.jsx"
 import DesktopMenu from "./components/section/desktopMenu/DesktopMenu.jsx";
@@ -21,8 +22,7 @@ function App() {
       <nav>
         <NavbarDiff/>
       </nav>
-      <section 
-          style={{ marginTop: '50px' }}>
+      <section style={{ marginTop: '50px' }}>
               <HeaderSection />
               <DesktopMenu />
       </section>
@@ -31,6 +31,10 @@ function App() {
               <Route
                   path ='/'
                   element ={<Home/>}
+              />
+              <Route
+                  path ='/tienda'
+                  element ={<Tienda/>}
               />
           </Routes>
       </main>

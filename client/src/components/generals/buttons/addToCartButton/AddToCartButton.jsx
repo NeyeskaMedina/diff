@@ -7,14 +7,14 @@ const AddToCartButton = ({ onClick }) => {
       variant="contained"
       sx={{
         mt: 1,
-        backgroundColor: "#f7c600",
+        backgroundColor: "var(--product-btn-addToCart)",
         color: "#000",
         fontWeight: "bold",
         textTransform: "none",
         borderRadius: "20px",
         px: 3,
         "&:hover": {
-          backgroundColor: "#e6b800",
+          backgroundColor: "var(--search-bgHover)",
         },
       }}
       onClick={onClick}

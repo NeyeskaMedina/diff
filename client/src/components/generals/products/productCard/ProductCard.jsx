@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Typography,
@@ -9,7 +9,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddToCartButton from "../../buttons/addToCartButton/AddToCartButton.jsx";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onOpenModal  }) => {
   const {
     id,
     image,
@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
             position: "absolute",
             top: 8,
             left: 8,
-            backgroundColor: "#f4b400",
+            background: "var(--badge-bg)",
             color: "white",
             fontWeight: "bold",
             fontSize: "0.75rem",
@@ -76,7 +76,7 @@ const ProductCard = ({ product }) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Vista rápida">
-          <IconButton size="small">
+          <IconButton size="small" onClick={() => onOpenModal(product)}>
             <VisibilityIcon fontSize="small" />
           </IconButton>
         </Tooltip>

@@ -24,7 +24,7 @@ const Footer = () => {
           
           {/* Logo */}
           <Grid item xs={12} sm={6} md={3}>
-            <Box component="img" src="/logo.png" alt="Diff" sx={{ width: 120 }} />
+            <Box component="img" src="/logoDifi.png" alt="Difi" sx={{ width: 120 }} />
           </Grid>
 
           {/* Informaciones */}
@@ -55,7 +55,7 @@ const Footer = () => {
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <EmailIcon sx={{ color: 'black', mr: 1 }} />
-              <Typography variant="body2">contacto@diff.cl</Typography>
+              <Typography variant="body2">contacto@difi.cl</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <InstagramIcon sx={{ color: 'black', mr: 1 }} />
@@ -88,7 +88,7 @@ const Footer = () => {
         py: 1 
       }}>
         <Typography variant="body2">
-          © 2025 <strong>Diff</strong> - DISEÑADO POR <Link href="#" underline="hover" color="inherit"><strong>NeyeTI</strong></Link>
+          © 2025 <strong>Difi</strong> - DISEÑADO POR <Link href="https://wa.me/56976512953" underline="hover" color="inherit"><strong>NeyeTI</strong></Link>
         </Typography>
       </Box>
     </Box>

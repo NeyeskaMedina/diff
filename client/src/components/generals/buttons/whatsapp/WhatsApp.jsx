@@ -7,7 +7,7 @@ const WhatsApp = () => {
     <>
     {/* WhatsApp */}
       <IconButton 
-        size={40}
+        // size={40}
         component="a" 
         href="https://wa.me/5666855307" 
         target="_blank" 

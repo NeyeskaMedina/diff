@@ -1,7 +1,10 @@
 // src/components/products/ProductSection.jsx
-import React from "react";
+import React, { useContext } from "react";
+import { useState } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import ProductCard from "../../generals/products/productCard/ProductCard.jsx";
+import ProductModal from "../../generals/products/productModal/ProductModal.jsx";
+import { UserContext } from "../../../context/UserContext.jsx";
 
 // 🔧 Simulación de productos
 const products = [
@@ -12,7 +15,16 @@ const products = [
     oldPrice: null,
     discount: null,
     image: "/img/categorias/ropa/enterito.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
+  
   {
     id: 2,
     name: "Armaf Odyssey Candee Edp 100ml Mujer",
@@ -20,6 +32,14 @@ const products = [
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
   {
     id: 3,
@@ -28,6 +48,14 @@ const products = [
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
   {
     id: 4,
@@ -36,6 +64,14 @@ const products = [
     oldPrice: "103.000",
     discount: 9,
     image: "/img/categorias/productsHigiene/chupon.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
   {
     id: 5,
@@ -44,6 +80,14 @@ const products = [
     oldPrice: "99.000",
     discount: 40,
     image: "/img/categorias/productsHigiene/chupon.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
   {
     id: 6,
@@ -52,6 +96,14 @@ const products = [
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
   {
     id: 7,
@@ -60,6 +112,14 @@ const products = [
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
   {
     id: 8,
@@ -68,23 +128,52 @@ const products = [
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
+    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
   },
 ];
 
 const ProductSection = () => {
+  const { openModalProduct, setOpenModalProduct } = useContext(UserContext);
+  const [selectedProduct, setSelectedProduct] = useState(null); // ✅ producto que se clicó
+
+  const handleOpenModal = (product) => {
+    setSelectedProduct(product);       // ✅ guardamos producto
+    setOpenModalProduct(true);         // ✅ abrimos modal
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+    setOpenModalProduct(false);
+  };
+
   return (
     <Box sx={{ px: 2, py: 6, backgroundColor: "#fff", textAlign: "center" }}>
-      <Typography variant="h5" sx={{ fontWeight: "bold", color: "#c28700", mb: 4 }}>
+      <Typography variant="h5" sx={{ fontWeight: "bold", color: "var(--product-title)", mb: 4 }}>
         NUESTROS PRODUCTOS
       </Typography>
 
       <Grid container spacing={3} justifyContent="center">
         {products.map((product) => (
           <Grid item key={product.id}>
-            <ProductCard product={product} />
+            {/* Le pasamos la función que abre el modal */}
+            <ProductCard product={product} onOpenModal={handleOpenModal} />
           </Grid>
         ))}
       </Grid>
+      {selectedProduct && (
+        <ProductModal
+          open={openModalProduct}
+          onClose={handleCloseModal}
+          product={selectedProduct}
+        />
+      )}
     </Box>
   );
 };
