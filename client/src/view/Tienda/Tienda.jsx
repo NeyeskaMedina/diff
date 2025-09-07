@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box, Grid, Typography, Button, Pagination, Drawer, List, ListItem,
   ListItemButton, ListItemText, Card, CardMedia, CardContent,
   IconButton, useMediaQuery
 } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { useParams, useNavigate } from "react-router-dom";
 import BreadcrumbsStore from "../../components/main/store/BreadcrumbsStore";
 
-const categories = ['Desodorantes Spray', 'Perfumería', 'Ropa Casual', 'Ropa de Gala'];
+const categories = [
+  'Ropa',
+  'Articulos de Higiene',
+  'Seguridad',
+  'Alimentación',
+  'Descanso',
+  'Juego',
+  'Lactancia',
+  'Accesorios de auto',
+  'Desodorantes Spray'
+];
 
 const allProducts = [
   {
     id: 1,
     title: 'Desodorante Khamrah 200 ml',
-    category: 'Desodorantes Spray',
+    category: 'Ropa',
     price: 14990,
     discountPrice: 8990,
     image: 'https://link-a-tu-imagen/khamrah.jpg'
@@ -29,7 +40,7 @@ const allProducts = [
   {
     id: 3,
     title: 'Desodorante Mayar 200 ml',
-    category: 'Desodorantes Spray',
+    category: 'Articulos de Higiene',
     price: 14990,
     discountPrice: 8990,
     image: 'https://link-a-tu-imagen/mayar.jpg'
@@ -38,13 +49,22 @@ const allProducts = [
 
 const ITEMS_PER_PAGE = 6;
 
-export default function Tienda() {
-  const [selectedCategory, setSelectedCategory] = useState('Desodorantes Spray');
-  const [page, setPage] = useState(1);
+// Función para crear un "slug" URL amigable
+const slugify = (str) =>
+  str.toLowerCase().replace(/\s+/g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-  // 📱 Detectar si es mobile
+export default function Tienda() {
+  const { categoria } = useParams(); // 👈 leemos la categoría desde la URL
+  const navigate = useNavigate();
+
+  const [page, setPage] = useState(1);
   const isMobile = useMediaQuery('(max-width:900px)');
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // si no hay categoría en la URL, usamos la primera
+  const selectedCategory = categoria
+    ? categories.find((cat) => slugify(cat) === categoria) || categories[0]
+    : categories[0];
 
   const filteredProducts = allProducts.filter(
     (product) => product.category === selectedCategory
@@ -55,10 +75,10 @@ export default function Tienda() {
     page * ITEMS_PER_PAGE
   );
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+  const handleCategoryClick = (cat) => {
+    navigate(`/tienda/${slugify(cat)}`);
     setPage(1);
-    setDrawerOpen(false); // cerrar drawer al elegir categoría en mobile
+    setDrawerOpen(false);
   };
 
   return (
@@ -67,24 +87,21 @@ export default function Tienda() {
       {!isMobile && (
         <Box width="250px" mr={2}>
           <Typography variant="h6">Categorías</Typography>
-            <List>
-              {categories.map((cat) => {
-                // contamos cuántos productos hay en cada categoría
-                const count = allProducts.filter((p) => p.category === cat).length;
-              
-                return (
-                  <ListItem key={cat} disablePadding>
-                    <ListItemButton
-                      selected={cat === selectedCategory}
-                      onClick={() => handleCategoryClick(cat)}
-                    >
-                      {/* mostramos el nombre + el contador */}
-                      <ListItemText primary={`${cat} (${count})`} />
-                    </ListItemButton>
-                  </ListItem>
-                );
-              })}
-            </List>
+          <List>
+            {categories.map((cat) => {
+              const count = allProducts.filter((p) => p.category === cat).length;
+              return (
+                <ListItem key={cat} disablePadding>
+                  <ListItemButton
+                    selected={cat === selectedCategory}
+                    onClick={() => handleCategoryClick(cat)}
+                  >
+                    <ListItemText primary={`${cat} (${count})`} />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
         </Box>
       )}
 
@@ -143,7 +160,6 @@ export default function Tienda() {
         </Box>
       </Box>
 
-      
       {/* 📱 Drawer de categorías en mobile */}
       <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box width={250} role="presentation" p={2}>
@@ -165,7 +181,6 @@ export default function Tienda() {
           </List>
         </Box>
       </Drawer>
-
     </Box>
   );
 }

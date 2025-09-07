@@ -4,9 +4,6 @@ import {
   IconButton,
   Badge,
   useMediaQuery,
-  Menu,
-  MenuItem,
-  Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -15,30 +12,37 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SearchBar from "../../generals/search/SearchBar";
 import MobileMenu from "../../generals/menu/mobileMenu/MobileMenu";
 import CartModals from "../../main/shoppingCart/cartModals/CartModals";
+import AuthModal from "../../generals/modals/account/AuthModal";
+import AccountMenu from "../../generals/modals/account/AccountMenu";
 
 const HeaderSection = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([
-    // {
-    //   name: "Desodorante 200 ml Khamrah de Lattafa",
-    //   price: 8990,
-    //   quantity: 1,
-    //   image: "https://via.placeholder.com/50",
-    // },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
 
-  // 👉 Estado para el menú de "Mi Cuenta"
+  // 👉 Estado de autenticación
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  // 👉 Estado para menú/logueado
   const [anchorEl, setAnchorEl] = useState(null);
   const openAccountMenu = Boolean(anchorEl);
+
+  // 👉 Estado para modal login/no logueado
+  const [openAuthModal, setOpenAuthModal] = useState(true);
+
   const handleAccountClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    if (isAuthenticated) {
+      setAnchorEl(event.currentTarget); // Abre menú
+    } else {
+      setOpenAuthModal(true); // Abre modal login
+    }
   };
+
   const handleAccountClose = () => {
     setAnchorEl(null);
   };
 
-  // 👉 Estado para el carrito
+  // 👉 Estado carrito
   const [openCart, setOpenCart] = useState(false);
   const handleOpenCart = () => setOpenCart(true);
   const handleCloseCart = () => setOpenCart(false);
@@ -56,25 +60,20 @@ const HeaderSection = () => {
         }}
       >
         {isMobile ? (
-          // 📱 Vista Mobile
           <>
-            {/* Menú hamburguesa izquierda */}
             <IconButton color="inherit" onClick={() => setMenuOpen(true)}>
               <MenuIcon />
             </IconButton>
 
-            {/* Carrito derecha */}
             <IconButton color="inherit" onClick={handleOpenCart}>
-              <Badge badgeContent={1} color="custom">
+              <Badge badgeContent={cartItems.length} color="custom">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
 
-            {/* Drawer del menú mobile */}
             <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
           </>
         ) : (
-          // 🖥️ Vista Desktop
           <>
             {/* Logo */}
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -88,36 +87,27 @@ const HeaderSection = () => {
 
             {/* Iconos */}
             <Box sx={{ display: "flex", gap: 1 }}>
-              {/* 👉 Menú Mi Cuenta */}
+              {/* 👉 Mi Cuenta */}
               <IconButton color="inherit" onClick={handleAccountClick}>
                 <AccountCircleIcon />
               </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={openAccountMenu}
-                onClose={handleAccountClose}
-                PaperProps={{ sx: { mt: 1.5, minWidth: 200 } }}
-              >
-                <MenuItem component="a" href="/mi-cuenta" onClick={handleAccountClose}>
-                  Escritorio
-                </MenuItem>
-                <MenuItem component="a" href="/mi-cuenta/pedidos" onClick={handleAccountClose}>
-                  Pedidos
-                </MenuItem>
-                <MenuItem component="a" href="/mi-cuenta/descargas" onClick={handleAccountClose}>
-                  Descargas
-                </MenuItem>
-                <MenuItem component="a" href="/mi-cuenta/direcciones" onClick={handleAccountClose}>
-                  Direcciones
-                </MenuItem>
-                <MenuItem component="a" href="/mi-cuenta/detalles" onClick={handleAccountClose}>
-                  Detalles de la cuenta
-                </MenuItem>
-                <Divider />
-                <MenuItem component="a" href="/mi-cuenta/logout" onClick={handleAccountClose}>
-                  Salir
-                </MenuItem>
-              </Menu>
+
+              {/* Si está logueado → menú */}
+              {isAuthenticated && (
+                <AccountMenu
+                  anchorEl={anchorEl}
+                  open={openAccountMenu}
+                  onClose={handleAccountClose}
+                />
+              )}
+
+              {/* Si no está logueado → modal */}
+              {!isAuthenticated && (
+                <AuthModal
+                  open={openAuthModal}
+                  onClose={() => setOpenAuthModal(false)}
+                />
+              )}
 
               {/* Favoritos */}
               <IconButton color="inherit">
@@ -128,7 +118,7 @@ const HeaderSection = () => {
 
               {/* Carrito */}
               <IconButton color="inherit" onClick={handleOpenCart}>
-                <Badge badgeContent={1} color="custom">
+                <Badge badgeContent={cartItems.length} color="custom">
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
@@ -137,8 +127,12 @@ const HeaderSection = () => {
         )}
       </Box>
 
-      {/* Modal del carrito */}
-      <CartModals open={openCart} onClose={handleCloseCart} cartItems={cartItems} />
+      {/* Modal carrito */}
+      <CartModals
+        open={openCart}
+        onClose={handleCloseCart}
+        cartItems={cartItems}
+      />
     </>
   );
 };

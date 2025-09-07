@@ -72,12 +72,12 @@ const ProductCard = ({ product, onOpenModal  }) => {
       >
         <Tooltip title="Favorito">
           <IconButton size="small">
-            <FavoriteBorderIcon fontSize="small" />
+            <FavoriteBorderIcon fontSize="xl_pzl" />
           </IconButton>
         </Tooltip>
         <Tooltip title="Vista rápida">
           <IconButton size="small" onClick={() => onOpenModal(product)}>
-            <VisibilityIcon fontSize="small" />
+            <VisibilityIcon fontSize="xl_pzl" />
           </IconButton>
         </Tooltip>
       </Box>

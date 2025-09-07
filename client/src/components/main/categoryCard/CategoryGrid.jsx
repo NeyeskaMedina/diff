@@ -8,6 +8,8 @@ const categories = [
   { id: 4, name: "Alimentación", img: "/img/categorias/Higiene.jpg" },
   { id: 5, name: "Descanso", img: "/img/categorias/Ropa.jpg" },
   { id: 6, name: "Juego", img: "/img/categorias/Higiene.jpg" },
+  { id: 7, name: "Lactancia", img: "/img/categorias/Higiene.jpg" },
+  { id: 8, name: "Accesorios de auto", img: "/img/categorias/Higiene.jpg" },
 ];
 
 const CategoryCard = ({ category, onClick }) => {

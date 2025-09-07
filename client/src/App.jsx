@@ -10,6 +10,9 @@ import HeaderSection from "./components/section/headerSection/HeaderSection.jsx"
 import DesktopMenu from "./components/section/desktopMenu/DesktopMenu.jsx";
 import Footer from './components/footer/Footer.jsx';
 import WhatsApp from './components/generals/buttons/whatsapp/WhatsApp.jsx';
+import Ingreso from './view/Cuenta/Login/Ingreso.jsx';
+import RecuperarClave from './view/Cuenta/Recuperacion/RecuperarClave.jsx';
+import MiCuenta from './view/Cuenta/MiCuenta/MiCuenta.jsx';
 
 
 function App() {
@@ -35,6 +38,19 @@ function App() {
               <Route
                   path ='/tienda'
                   element ={<Tienda/>}
+              />
+              <Route path="/tienda/:categoria" element={<Tienda />} />
+              <Route
+                  path ='/ingresar'
+                  element ={<Ingreso/>}
+              />
+              <Route
+                  path ='/mi-cuenta'
+                  element ={<MiCuenta/>}
+              />
+              <Route
+                  path ='/recuperar-cuenta'
+                  element ={<RecuperarClave/>}
               />
           </Routes>
       </main>
