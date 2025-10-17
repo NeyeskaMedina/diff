@@ -6,15 +6,16 @@ const AddToCartButton = ({ onClick }) => {
     <Button
       variant="contained"
       sx={{
-        mt: 1,
-        backgroundColor: "var(--product-btn-addToCart)",
         color: "#000",
         fontWeight: "bold",
+        backgroundColor: "transparent",
         textTransform: "none",
+        border: "2px solid var(--product-btn-addToCart)",
         borderRadius: "20px",
         px: 3,
         "&:hover": {
-          backgroundColor: "var(--search-bgHover)",
+          backgroundColor: "var(--product-btn-addToCart)",
+          color: "#fff",
         },
       }}
       onClick={onClick}

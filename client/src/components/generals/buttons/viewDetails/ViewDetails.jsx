@@ -3,20 +3,21 @@ import {
 } from "@mui/material";
 
 
-const ViewDetails = ({ text, onClick, icon, bg = "#fcb900", fullWidth = false }) => (
+const ViewDetails = ({ sx, text, onClick, icon, bg = "#fcb900", fullWidth = false }) => (
   <Box
     component="button"
     onClick={onClick}
     style={{
       width: fullWidth ? "100%" : "auto",
+      height: '80%',
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       gap: 8,
       background: bg,
-      color: "#fff",
-      padding: "12px 20px",
-      borderRadius: 10,
+      color: "#ffffffff",
+      padding: "17px",
+      borderRadius: 20,
       border: "none",
       cursor: "pointer",
       fontWeight: 700,

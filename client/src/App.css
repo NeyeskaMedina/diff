@@ -37,3 +37,9 @@ a{
   grid-area: foo;
   background-color: red;
 }
+.bree-serif-regular {
+  font-family: "Bree Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+

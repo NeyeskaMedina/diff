@@ -12,6 +12,7 @@ const products = [
     id: 1,
     name: "AFNAN 9 PM For Men Eau de Parfum 100 ml",
     price: "52.990",
+    stock: 100,
     oldPrice: null,
     discount: null,
     image: "/img/categorias/ropa/enterito.jpg",
@@ -29,6 +30,7 @@ const products = [
     id: 2,
     name: "Armaf Odyssey Candee Edp 100ml Mujer",
     price: "74.990",
+    stock: 0,
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
@@ -45,6 +47,7 @@ const products = [
     id: 3,
     name: "Bade’e AL Oud Honor & Glory de Lattafa",
     price: "49.990",
+    stock: 3,
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
@@ -61,6 +64,7 @@ const products = [
     id: 4,
     name: "BHARARA – “King” EDP Hombre 100 ml",
     price: "93.990",
+    stock: 20,
     oldPrice: "103.000",
     discount: 9,
     image: "/img/categorias/productsHigiene/chupon.jpg",
@@ -77,6 +81,7 @@ const products = [
     id: 5,
     name: "Producto 5",
     price: "59.990",
+    stock: 8,
     oldPrice: "99.000",
     discount: 40,
     image: "/img/categorias/productsHigiene/chupon.jpg",
@@ -93,6 +98,7 @@ const products = [
     id: 6,
     name: "Producto 6",
     price: "69.990",
+    stock: 105,
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
@@ -109,6 +115,7 @@ const products = [
     id: 7,
     name: "Producto 7",
     price: "69.990",
+    stock: 7,
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
@@ -125,6 +132,7 @@ const products = [
     id: 8,
     name: "Producto 8",
     price: "69.990",
+    stock: 37,
     oldPrice: null,
     discount: null,
     image: "/img/categorias/productsHigiene/chupon.jpg",
@@ -155,9 +163,9 @@ const ProductSection = () => {
 
   return (
     <Box sx={{ px: 2, py: 6, backgroundColor: "#fff", textAlign: "center" }}>
-      <Typography variant="h5" sx={{ fontWeight: "bold", color: "var(--product-title)", mb: 4 }}>
+      <h4 className="bree-serif-regular" variant="h5" style={{ fontWeight: "bold", color: "var(--product-title)", mb: 4, fontFamily: 'Bree Serif Regular', fontSize: '2rem'}}>
         NUESTROS PRODUCTOS
-      </Typography>
+      </h4>
 
       <Grid container spacing={3} justifyContent="center">
         {products.map((product) => (

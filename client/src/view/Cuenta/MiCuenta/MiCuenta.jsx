@@ -71,6 +71,7 @@ const MiCuenta = () => {
             }}
             sx={{
               borderRadius: 1,
+              cursor: 'pointer',
               mb: 1,
               bgcolor: selected === item.key ? "grey.200" : "transparent",
             }}

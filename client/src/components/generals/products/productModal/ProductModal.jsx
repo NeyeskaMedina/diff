@@ -10,6 +10,8 @@ import {
   Button,
 } from "@mui/material";
 import AddToCartButton from "../../buttons/addToCartButton/AddToCartButton";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ViewDetails from "../../buttons/viewDetails/ViewDetails.jsx";
 
 const ProductModal = ({ open, onClose, product }) => {
   const theme = useTheme();
@@ -58,6 +60,7 @@ const ProductModal = ({ open, onClose, product }) => {
                   alignItems: "center",
                 }}
               >
+                
                 <img
                   src={product.image}
                   alt={product.title}
@@ -70,7 +73,9 @@ const ProductModal = ({ open, onClose, product }) => {
                   }}
                 />
               </Box>
-              <AddToCartButton product={product} fullWidth />
+              <Button>
+                  <ViewDetails product={product} sx={{ width: '100%' }} text="VER DETALLES" bg='var(--product-btn-addToCart)'  />
+              </Button>
             </Grid>
 
             {/* DERECHA (scroleable) */}
@@ -88,7 +93,7 @@ const ProductModal = ({ open, onClose, product }) => {
               }}
             >
               <Typography variant="h5" fontWeight="700">
-                {product.title}
+                {product.name}
               </Typography>
 
               <Box display="flex" alignItems="center" gap={2}>
@@ -100,8 +105,8 @@ const ProductModal = ({ open, onClose, product }) => {
                     {product.oldPrice}
                   </Typography>
                 )}
-                <Typography variant="h5" color="error" fontWeight={800}>
-                  {product.price}
+                <Typography variant="h5" color='var(--product-btn-addToCart)' fontWeight={800}>
+                  {product.price} $
                 </Typography>
               </Box>
 
@@ -109,14 +114,12 @@ const ProductModal = ({ open, onClose, product }) => {
                 {product.description}
               </Typography>
 
-              <Typography variant="body2">
-                ✅ {product.stock} disponibles
+              <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+                <CheckCircleOutlineIcon sx={{ color: 'var(--product-btn-addToCart)' }} /> {product.stock} disponibles
               </Typography>
 
               <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
-                <Button variant="contained" color="primary" fullWidth>
-                  Comprar ahora
-                </Button>
+                <AddToCartButton product={product} fullWidth />
               </Box>
             </Grid>
           </Grid>
@@ -132,13 +135,13 @@ const ProductModal = ({ open, onClose, product }) => {
               p: 2,
             }}
           >
-            <Typography variant="h6" fontWeight="700">
-              {product.title}
+            <Typography sx={{ textAlign: "center" }} variant="h5" fontWeight="700">
+                {product.name}
             </Typography>
 
             <img
               src={product.image}
-              alt={product.title}
+              alt={product.name}
               style={{
                 width: "100%",
                 maxWidth: 350,
@@ -153,15 +156,13 @@ const ProductModal = ({ open, onClose, product }) => {
               {product.description}
             </Typography>
 
-            <Typography variant="body2">
-              ✅ {product.stock} disponibles
+            <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }} variant="body2">
+                <CheckCircleOutlineIcon sx={{ color: 'var(--product-btn-addToCart)' }} /> {product.stock} disponibles
             </Typography>
 
-            <Box sx={{ display: "flex", gap: 2, mt: "auto" }}>
+            <Box sx={{ display: "flex", gap: 2, mt: "auto", alignItems: 'center' }}>
+              <ViewDetails product={product} sx={{ width: '100%' }} text="VER DETALLES" bg='var(--product-btn-addToCart)'  />
               <AddToCartButton product={product} fullWidth />
-              <Button variant="contained" color="primary" fullWidth>
-                Comprar ahora
-              </Button>
             </Box>
           </Box>
         )}
