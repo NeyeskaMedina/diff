@@ -36,14 +36,4 @@ a{
 #root > footer {
   grid-area: foo;
   background-color: red;
-<<<<<<< HEAD
 }
-.bree-serif-regular {
-  font-family: "Bree Serif", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-=======
-}
->>>>>>> main

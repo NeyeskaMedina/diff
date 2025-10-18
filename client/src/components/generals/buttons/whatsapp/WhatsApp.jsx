@@ -13,13 +13,8 @@ const WhatsApp = () => {
         target="_blank" 
         sx={{ 
           position: 'fixed', 
-<<<<<<< HEAD
-          bottom: 40, 
-          right: 40, 
-=======
           bottom: 20, 
           right: 20, 
->>>>>>> main
           backgroundColor: '#25D366', 
           color: '#fff',
           '&:hover': { backgroundColor: '#1ebe5b' },

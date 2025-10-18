@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useContext } from "react";
-=======
 import React, { useState } from "react";
->>>>>>> main
 import {
   Box,
   Typography,
@@ -12,14 +8,9 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddToCartButton from "../../buttons/addToCartButton/AddToCartButton.jsx";
-<<<<<<< HEAD
-
-const ProductCard = ({ product, onOpenModal  }) => {
-=======
 import AddToCartButtonIcon from "../../buttons/addToCartButton/AddToCartButtonIcon.jsx";
 
 const ProductCard = ({ product, onOpenModal }) => {
->>>>>>> main
   const {
     id,
     image,
@@ -29,11 +20,8 @@ const ProductCard = ({ product, onOpenModal }) => {
     discount,
   } = product;
 
-<<<<<<< HEAD
-=======
   const [hovered, setHovered] = useState(false);
 
->>>>>>> main
   return (
     <Box
       key={id}
@@ -52,11 +40,7 @@ const ProductCard = ({ product, onOpenModal }) => {
         "&:hover": {
           transform: "translateY(-4px)",
         },
-<<<<<<< HEAD
-        position: "relative", // Solo para badge/iconos
-=======
         position: "relative",
->>>>>>> main
       }}
     >
       {/* Badge de descuento */}
@@ -101,11 +85,7 @@ const ProductCard = ({ product, onOpenModal }) => {
         </Tooltip>
       </Box>
 
-<<<<<<< HEAD
-      {/* Contenido principal con flex */}
-=======
       {/* Contenido principal */}
->>>>>>> main
       <Box
         sx={{
           display: "flex",
@@ -142,36 +122,21 @@ const ProductCard = ({ product, onOpenModal }) => {
         </Typography>
 
         {/* Precio */}
-<<<<<<< HEAD
-        <Box sx={{ textAlign: "center", mb: 2, display: "flex", justifyContent: 'center' }}>
-=======
         <Box sx={{ textAlign: "center", mb: 2, display: "flex", justifyContent: 'center', gap: 1 }}>
->>>>>>> main
           {oldPrice && (
             <Typography
               variant="h6"
               sx={{ color: "gray", textDecoration: "line-through" }}
             >
-<<<<<<< HEAD
-              ${oldPrice} {' '}
-            </Typography>
-          )}
-          <Typography variant="h6" color="text.primary">
-=======
               ${oldPrice}
             </Typography>
           )}
           <Typography variant="h6" sx={{ color: 'custom.priceColor', fontWeight: 'bold' }}>
->>>>>>> main
             ${price}
           </Typography>
         </Box>
       </Box>
 
-<<<<<<< HEAD
-      {/* Botón Añadir al carrito */}
-      <AddToCartButton onClick={() => console.log("Añadido:", id)} />
-=======
       {/* Botones con transición hover */}
       <Box
         onMouseEnter={() => setHovered(true)}
@@ -248,7 +213,6 @@ const ProductCard = ({ product, onOpenModal }) => {
           />
         </Box>
       </Box>
->>>>>>> main
     </Box>
   );
 };
