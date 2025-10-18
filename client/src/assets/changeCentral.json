@@ -1,0 +1,26 @@
+{
+    "changesNavbar": [
+        {
+            "id": "1",
+            "name": "instagram",
+            "directionUrl": ""
+        },
+        {
+            "id": "2",
+            "name": "correo",
+            "directionUrl": ""
+        }
+    ],
+    "changesMain": [
+        {
+            "id": "1",
+            "name": "instagram",
+            "directionUrl": ""
+        },
+        {
+            "id": "2",
+            "name": "correo",
+            "directionUrl": ""
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: grid;
+  grid-template-areas: 
+  'nav nav nav nav nav nav nav nav'
+  'mai mai mai mai mai sec sec sec'
+  'mai mai mai mai mai sec sec sec'
+  'foo foo foo foo foo foo foo foo'
+}
+/* Global */
+a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.855);
+}
+.active{
+    color: rgb(0, 0, 0);
+}
+/* NavBar */
+
+#root > nav {
+  grid-area: nav;
+}
+#root > main {
+  grid-area: mai;
+  background-color: black;
+}
+
+#root > section {
+  grid-area: sec;
+  background-color: white;
+}
+
+#root > footer {
+  grid-area: foo;
+  background-color: red;
+}
