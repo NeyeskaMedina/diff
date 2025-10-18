@@ -8,6 +8,8 @@ const theme = createTheme({
     custom: {
       main: "rgb(128, 237, 69)", 
       contrastText: "#fff",
+      priceColor: "var(--product-btn-addToCart)",
+      checkColor: "var(--product-btn-addToCart)",
     },
   },
    customGradients: {

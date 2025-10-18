@@ -1,6 +1,7 @@
 // src/components/common/AddToCartButton.jsx
 import { Button } from "@mui/material";
 
+<<<<<<< HEAD
 const AddToCartButton = ({ onClick }) => {
   return (
     <Button
@@ -18,6 +19,13 @@ const AddToCartButton = ({ onClick }) => {
           color: "#fff",
         },
       }}
+=======
+const AddToCartButton = ({ onClick, sx }) => {
+  return (
+    <Button
+      variant="contained"
+      sx={sx}
+>>>>>>> main
       onClick={onClick}
     >
       AÑADIR AL CARRITO
