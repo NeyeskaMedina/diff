@@ -15,19 +15,19 @@ import MenuIcon from "@mui/icons-material/Menu";
 // Importamos las secciones
 import Escritorio from "../../../components/main/account/Escritorio";
 import Pedidos from "../../../components/main/account/Pedidos";
-import Direcciones from "../../../components/main/account/Direcciones";
+// import Clientes from "../../../components/main/account/Direcciones";
 import Configuracion from "../../../components/main/account/Configuracion";
 // import Salir from "./Salir";
 
 const menuItems = [
   { key: "escritorio", label: "Escritorio" },
   { key: "pedidos", label: "Pedidos" },
-  { key: "direcciones", label: "Direcciones" },
-  { key: "configuracion", label: "Configuración" },
+  { key: "clientes", label: "Clientes" },
+  { key: "configuracion", label: "Configuración" }, //Carga de imagenes, cambio de contraseña
   { key: "salir", label: "Salir" },
 ];
 
-const MiCuenta = () => {
+const Admin = () => {
   const [selected, setSelected] = useState("escritorio");
   const [openDrawer, setOpenDrawer] = useState(false);
   const isMobile = useMediaQuery("(max-width:768px)");
@@ -39,8 +39,8 @@ const MiCuenta = () => {
         return <Escritorio onSelect={setSelected} />;
       case "pedidos":
         return <Pedidos />;
-      case "direcciones":
-        return <Direcciones />;
+      case "clientes":
+        return <Clientes />;
       case "configuracion":
         return <Configuracion />;
       case "salir":
@@ -116,4 +116,4 @@ const MiCuenta = () => {
   );
 };
 
-export default MiCuenta;
+export default Admin;

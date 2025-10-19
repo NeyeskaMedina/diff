@@ -22,6 +22,9 @@ html{
     --product-title: #2d880c;
     --product-btn-addToCart: #9673ac;
     --product-btn-color: #000000;
+    --productModal-icon-color: #78548f;
+    --productModal-icon-color-bg: rgba(120, 84, 143, 0.233);
+    --productIncrement-cart: rgba(120, 84, 143, 0.426); 
 
     /* SEARCH IN SECTION */
     --search-bg: rgb(128, 237, 69);

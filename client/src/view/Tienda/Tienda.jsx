@@ -7,6 +7,8 @@ import {
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useParams, useNavigate } from "react-router-dom";
 import BreadcrumbsStore from "../../components/main/store/BreadcrumbsStore";
+import AddToCartButtonIcon from '../../components/generals/buttons/addToCartButton/AddToCartButtonIcon.jsx';
+import AddToCartButton from '../../components/generals/buttons/addToCartButton/AddToCartButton.jsx';
 
 const categories = [
   'Ropa',
@@ -54,6 +56,8 @@ const slugify = (str) =>
   str.toLowerCase().replace(/\s+/g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 export default function Tienda() {
+  const [hovered, setHovered] = useState(false);
+    const [hoveredImage, setHoveredImage] = useState(false);
   const { categoria } = useParams(); // 👈 leemos la categoría desde la URL
   const navigate = useNavigate();
 
@@ -136,13 +140,84 @@ export default function Tienda() {
                     <del>${product.price.toLocaleString()}</del>{" "}
                     <strong>${product.discountPrice.toLocaleString()}</strong>
                   </Typography>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    sx={{ mt: 1, bgcolor: '#F7B801', color: 'black' }}
-                  >
-                    AÑADIR AL CARRITO
-                  </Button>
+                  {/* 🎯 Botón de añadir al carrito con hover animado */}
+                            <Box
+                              sx={{
+                                position: "relative",
+                                width: "100%",
+                                maxWidth: 350,
+                                height: 50,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                              onMouseEnter={() => setHovered(true)}
+                              onMouseLeave={() => setHovered(false)}
+                            >
+                              {/* Botón clásico */}
+                              <Box
+                                sx={{
+                                  position: "absolute",
+                                  width: "100%",
+                                  opacity: hovered ? 0 : 1,
+                                  transform: hovered ? "translateY(-10px)" : "translateY(0)",
+                                  transition: "all 0.3s ease",
+                                }}
+                              >
+                                <AddToCartButton
+                                  fullWidth
+                                  onClick={() => console.log("Añadir:", product.id)}
+                                  sx={{
+                                    width: "100%",
+                                    boxSizing: "border-box",
+                                    color: "#000",
+                                    backgroundColor: "transparent",
+                                    border: "2px solid",
+                                    borderColor: "var(--product-btn-addToCart)",
+                                    fontWeight: "bold",
+                                    textTransform: "none",
+                                    borderRadius: "20px",
+                                    cursor: "pointer",
+                                    "&:hover": {
+                                      backgroundColor: "var(--product-btn-addToCart)",
+                                      color: "#fff",
+                                    },
+                                  }}
+                                />
+                              </Box>
+                  
+                              {/* Botón con ícono */}
+                              <Box
+                                sx={{
+                                  position: "absolute",
+                                  width: "100%",
+                                  opacity: hovered ? 1 : 0,
+                                  transform: hovered ? "translateY(0)" : "translateY(10px)",
+                                  transition: "all 0.3s ease",
+                                }}
+                              >
+                                <AddToCartButtonIcon
+                                  fullWidth
+                                  onClick={() => console.log("Carrito:", product.id)}
+                                  sx={{
+                                    width: "100%",
+                                    boxSizing: "border-box",
+                                    color: "#000",
+                                    backgroundColor: "transparent",
+                                    border: "2px solid",
+                                    borderColor: "var(--product-btn-addToCart)",
+                                    fontWeight: "bold",
+                                    textTransform: "none",
+                                    borderRadius: "20px",
+                                    cursor: "pointer",
+                                    "&:hover": {
+                                      backgroundColor: "var(--product-btn-addToCart)",
+                                      color: "#fff",
+                                    },
+                                  }}
+                                />
+                              </Box>
+                            </Box>
                 </CardContent>
               </Card>
             </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   IconButton,
@@ -14,11 +14,12 @@ import MobileMenu from "../../generals/menu/mobileMenu/MobileMenu";
 import CartModals from "../../main/shoppingCart/cartModals/CartModals";
 import AuthModal from "../../generals/modals/account/AuthModal";
 import AccountMenu from "../../generals/modals/account/AccountMenu";
+import { UserContext } from "../../../context/UserContext";
 
 const HeaderSection = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const { cartItems, setCartItems } = useContext(UserContext);
 
   // 👉 Estado de autenticación
   const [isAuthenticated, setIsAuthenticated] = useState(true);

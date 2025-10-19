@@ -13,6 +13,7 @@ const products = [
     price: "52.990",
     oldPrice: null,
     discount: null,
+    stock: 0,
     image: "/img/categorias/ropa/enterito.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -22,6 +23,7 @@ const products = [
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    category: "Ropa",
   },
   {
     id: 2,
@@ -29,6 +31,7 @@ const products = [
     price: "74.990",
     oldPrice: null,
     discount: null,
+    stock: 15,
     image: "/img/categorias/productsHigiene/chupon.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -38,6 +41,7 @@ const products = [
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    category: "Higiene",
   },
   {
     id: 3,
@@ -45,6 +49,7 @@ const products = [
     price: "49.990",
     oldPrice: null,
     discount: null,
+    stock: 10,
     image: "/img/categorias/productsHigiene/chupon.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -53,7 +58,16 @@ const products = [
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
-    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
+    doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
+    unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?`,
+   category: "Accesorio de autos",
   },
   {
     id: 4,
@@ -61,6 +75,7 @@ const products = [
     price: "93.990",
     oldPrice: "103.000",
     discount: 9,
+    stock: 5,
     image: "/img/categorias/productsHigiene/chupon.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -70,6 +85,7 @@ const products = [
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    category: "Articulos de seguridad",
   },
   {
     id: 5,
@@ -77,6 +93,7 @@ const products = [
     price: "59.990",
     oldPrice: "99.000",
     discount: 40,
+    stock: 1,
     image: "/img/categorias/productsHigiene/chupon.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -86,6 +103,7 @@ const products = [
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    category: "Higiene",
   },
   {
     id: 6,
@@ -93,6 +111,7 @@ const products = [
     price: "69.990",
     oldPrice: null,
     discount: null,
+    stock: 6,
     image: "/img/categorias/productsHigiene/chupon.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -102,6 +121,7 @@ const products = [
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    category: "Comida",
   },
   {
     id: 7,
@@ -109,6 +129,7 @@ const products = [
     price: "69.990",
     oldPrice: null,
     discount: null,
+    stock: 0,
     image: "/img/categorias/productsHigiene/chupon.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -118,6 +139,7 @@ const products = [
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    category: "Comida",
   },
   {
     id: 8,
@@ -125,6 +147,7 @@ const products = [
     price: "69.990",
     oldPrice: null,
     discount: null,
+    stock: 9,
     image: "/img/categorias/productsHigiene/chupon.jpg",
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
@@ -134,6 +157,7 @@ const products = [
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?<div className="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
     doloremque aut? Voluptates, sint. Pariatur placeat deserunt maxime at corporis voluptate
     unde temporibus labore velit fugiat architecto libero ab, necessitatibus reprehenderit?"></div>`,
+    category: "Higiene",
   },
 ];
 

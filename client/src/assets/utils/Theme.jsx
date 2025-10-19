@@ -10,6 +10,8 @@ const theme = createTheme({
       contrastText: "#fff",
       priceColor: "var(--product-btn-addToCart)",
       checkColor: "var(--product-btn-addToCart)",
+      iconModalColor: "var(--productModal-icon-color)",
+      iconModalColorBg: "var(--productModal-icon-color-bg)",
     },
   },
    customGradients: {
