@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import AddToCartButton from "../../../buttons/addToCartButton/AddToCartButton";
 import AddToCartButtonIcon from "../../../buttons/addToCartButton/AddToCartButtonIcon";
+import { useCart } from "../../../../../context/CartContext.jsx";
+import { handleAddToCart } from '../../../../../assets/utils/CartUtils.js';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ProductModalFooter from "./ProductModalFooter";
 import CartIncrement from "../../../buttons/cartButtons/CartIncrement";
 
 const ProductModalMovil = ({ product }) => {
   const [hovered, setHovered] = useState(false);
+  const { addToCart } = useCart();
   return (
     <Box sx={{
         display: "flex",
@@ -88,7 +91,7 @@ const ProductModalMovil = ({ product }) => {
                   
                   <AddToCartButton
                     fullWidth
-                    onClick={() => console.log("Añadir:", product.id)}
+                    onClick={() => handleAddToCart(product, addToCart)}
                     sx={{
                       width: "100%", // 🔥 mismo ancho
                       boxSizing: "border-box",
@@ -120,7 +123,7 @@ const ProductModalMovil = ({ product }) => {
                 >
                   <AddToCartButtonIcon
                     fullWidth
-                    onClick={() => console.log("Carrito:", product.id)}
+                    onClick={() => handleAddToCart(product, addToCart)}
                     sx={{
                       width: "100%", // 🔥 igual ancho
                       boxSizing: "border-box",

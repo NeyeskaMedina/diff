@@ -55,8 +55,8 @@ const Direcciones = () => {
         {/* Dirección de Facturación */}
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 3, borderRadius: 2, boxShadow: 2 }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Dirección de Facturación
+            <Typography variant="h5" sx={{ fontWeight: "bold", color: "var(--product-title)", mb: 4 }}>
+              DIRECCIÓN DE FACTURACIÓN
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -66,6 +66,16 @@ const Direcciones = () => {
                   name="nombre"
                   value={billingAddress.nombre}
                   onChange={handleBillingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -75,6 +85,16 @@ const Direcciones = () => {
                   name="calle"
                   value={billingAddress.calle}
                   onChange={handleBillingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -84,6 +104,16 @@ const Direcciones = () => {
                   name="ciudad"
                   value={billingAddress.ciudad}
                   onChange={handleBillingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -93,6 +123,16 @@ const Direcciones = () => {
                   name="region"
                   value={billingAddress.region}
                   onChange={handleBillingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -102,6 +142,16 @@ const Direcciones = () => {
                   name="codigoPostal"
                   value={billingAddress.codigoPostal}
                   onChange={handleBillingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -111,17 +161,26 @@ const Direcciones = () => {
                   name="pais"
                   value={billingAddress.pais}
                   onChange={handleBillingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
             <Button
               variant="contained"
-              color="primary"
-              sx={{ mt: 3 }}
+              sx={{ mt: 3, backgroundColor: "custom.btnColorGreen" }}
               fullWidth
               onClick={handleSaveBilling}
             >
-              Guardar Facturación
+              Guardar datos de facturación
             </Button>
           </Paper>
         </Grid>
@@ -129,8 +188,8 @@ const Direcciones = () => {
         {/* Dirección de Entrega */}
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 3, borderRadius: 2, boxShadow: 2 }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Dirección de Entrega
+            <Typography variant="h5" sx={{ fontWeight: "bold", color: "var(--product-title)", mb: 4 }}>
+              DIRECCIÓN DE ENTREGA
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -140,6 +199,16 @@ const Direcciones = () => {
                   name="nombre"
                   value={shippingAddress.nombre}
                   onChange={handleShippingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -149,6 +218,16 @@ const Direcciones = () => {
                   name="calle"
                   value={shippingAddress.calle}
                   onChange={handleShippingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -158,6 +237,16 @@ const Direcciones = () => {
                   name="ciudad"
                   value={shippingAddress.ciudad}
                   onChange={handleShippingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -167,6 +256,16 @@ const Direcciones = () => {
                   name="region"
                   value={shippingAddress.region}
                   onChange={handleShippingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -176,6 +275,16 @@ const Direcciones = () => {
                   name="codigoPostal"
                   value={shippingAddress.codigoPostal}
                   onChange={handleShippingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -185,17 +294,26 @@ const Direcciones = () => {
                   name="pais"
                   value={shippingAddress.pais}
                   onChange={handleShippingChange}
+                  sx={{
+                    "& label.Mui-focused": {
+                      color: "#009688", // color del label cuando está enfocado
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#009688", // color del borde cuando está enfocado
+                      },
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
             <Button
               variant="contained"
-              color="primary"
-              sx={{ mt: 3 }}
+              sx={{ mt: 3, backgroundColor: "custom.btnColorGreen" }}
               fullWidth
               onClick={handleSaveShipping}
             >
-              Guardar Entrega
+              Guardar datos de entrega
             </Button>
           </Paper>
         </Grid>

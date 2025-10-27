@@ -18,6 +18,11 @@ html{
     --header-bg: linear-gradient(90deg, #FFD6E0, #E0BBE4, #D0F0C0);
     --header-color: black;
 
+    /* CONFIGURACIONES */
+    --label-colorTxF: #009688;
+    --border-colorTxF: #009688;
+
+
     /* PRODUCTS IN SECTION*/
     --product-title: #2d880c;
     --product-btn-addToCart: #9673ac;

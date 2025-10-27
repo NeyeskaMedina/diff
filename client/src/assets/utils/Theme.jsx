@@ -9,6 +9,7 @@ const theme = createTheme({
       main: "rgb(128, 237, 69)", 
       contrastText: "#fff",
       priceColor: "var(--product-btn-addToCart)",
+      btnColorGreen: "var(--product-title)",
       checkColor: "var(--product-btn-addToCart)",
       iconModalColor: "var(--productModal-icon-color)",
       iconModalColorBg: "var(--productModal-icon-color-bg)",

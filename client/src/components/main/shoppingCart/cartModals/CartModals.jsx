@@ -14,9 +14,15 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useCart } from "../../../../context/CartContext.jsx"; 
 
-const CartModals = ({ open, onClose, cartItems }) => {
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+const CartModals = ({ open, onClose }) => {
+  const { cartItems } = useCart(); // 👈 Obtiene los productos del contexto
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <Drawer
@@ -25,7 +31,7 @@ const CartModals = ({ open, onClose, cartItems }) => {
       onClose={onClose}
       PaperProps={{
         sx: {
-          width: { xs: "100%", sm: 400 }, // full en mobile, 400px en desktop
+          width: { xs: "100%", sm: 400 },
           display: "flex",
           flexDirection: "column",
           height: "100vh",
@@ -48,7 +54,7 @@ const CartModals = ({ open, onClose, cartItems }) => {
         </IconButton>
       </Box>
 
-      {/* Contenido scrollable */}
+      {/* Contenido */}
       <Box sx={{ flex: 1, overflowY: "auto", p: 2 }}>
         {cartItems.length > 0 ? (
           <List>
@@ -90,7 +96,7 @@ const CartModals = ({ open, onClose, cartItems }) => {
         )}
       </Box>
 
-      {/* Footer fijo */}
+      {/* Footer */}
       {cartItems.length > 0 && (
         <Box
           sx={{

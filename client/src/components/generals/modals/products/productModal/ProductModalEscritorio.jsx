@@ -5,8 +5,10 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import AddToCartButton from "../../../buttons/addToCartButton/AddToCartButton";
+import AddToCartButton from "../../../buttons/addToCartButton/AddToCartButton.jsx";
 import AddToCartButtonIcon from "../../../buttons/addToCartButton/AddToCartButtonIcon";
+import { useCart } from "../../../../../context/CartContext.jsx";
+import { handleAddToCart } from '../../../../../assets/utils/CartUtils.js';
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ProductModalFooter from "./ProductModalFooter";
 import CartIncrement from "../../../buttons/cartButtons/CartIncrement";
@@ -14,6 +16,7 @@ import CartIncrement from "../../../buttons/cartButtons/CartIncrement";
 const ProductModalEscritorio = ({ product }) => {
   const [hovered, setHovered] = useState(false);
   const [hoveredImage, setHoveredImage] = useState(false); // 👈 control del hover en imagen
+  const { addToCart } = useCart();
 
   return (
     <Grid
@@ -190,7 +193,7 @@ const ProductModalEscritorio = ({ product }) => {
             >
               <AddToCartButton
                 fullWidth
-                onClick={() => console.log("Añadir:", product.id)}
+                onClick={() => handleAddToCart(product, addToCart)}
                 sx={{
                   width: "100%",
                   boxSizing: "border-box",
@@ -222,7 +225,7 @@ const ProductModalEscritorio = ({ product }) => {
             >
               <AddToCartButtonIcon
                 fullWidth
-                onClick={() => console.log("Carrito:", product.id)}
+                onClick={() => handleAddToCart(product, addToCart)}
                 sx={{
                   width: "100%",
                   boxSizing: "border-box",

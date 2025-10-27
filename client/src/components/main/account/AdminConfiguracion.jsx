@@ -11,7 +11,7 @@ import {
   Divider,
 } from "@mui/material";
 
-const Configuracion = () => {
+const AdminConfiguracion = () => {
   const [tabValue, setTabValue] = useState(0);
   const [csvFile, setCsvFile] = useState(null);
 
@@ -55,14 +55,11 @@ const Configuracion = () => {
         scrollButtons="auto"
       >
         <Tab label="Cambio de contraseña" />
+        <Tab label="Cargar productos" />
         <Tab label="Otras configuraciones" />
       </Tabs>
 
       {/* ================= CAMBIO DE CONTRASEÑA ================= */}
-      {/* ======================================================== */}
-      {/* ======================================================== */}
-      {/* ======================================================== */}
-
       {tabValue === 0 && (
         <Box>
           <Typography variant="subtitle1" gutterBottom>
@@ -95,14 +92,89 @@ const Configuracion = () => {
         </Box>
       )}
 
+      {/* ================= CARGA DE PRODUCTOS ================= */}
+      {tabValue === 1 && (
+        <Box>
+          <Typography variant="subtitle1" gutterBottom>
+            🛒 Cargar productos
+          </Typography>
+
+          {/* ---------- CARGA INDIVIDUAL ---------- */}
+          <Typography variant="body1" sx={{ mt: 1, mb: 1, fontWeight: 500 }}>
+            Carga individual
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField fullWidth label="Nombre del producto" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField fullWidth label="Precio" type="number" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="URL de la imagen del producto"
+                placeholder="https://ejemplo.com/imagen.jpg"
+              />
+            </Grid> <br />
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Descripción"
+                multiline
+                rows={3}
+              />
+            </Grid> <br />
+            <Grid item xs={12}>
+              <Button variant="contained" color="success">
+                Publicar producto
+              </Button>
+            </Grid>
+          </Grid>
+
+          <Divider sx={{ my: 3 }} />
+
+          {/* ---------- CARGA MASIVA POR CSV ---------- */}
+          <Typography variant="body1" sx={{ mt: 2, mb: 1, fontWeight: 500 }}>
+            Carga masiva (archivo CSV)
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 1 }}>
+            Puedes subir un archivo CSV con múltiples productos.  
+            Ejemplo de columnas: <strong>nombre, precio, descripción, categoría, imagen_url</strong>
+          </Typography>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} sm={8}>
+              <Button
+                variant="outlined"
+                component="label"
+                fullWidth
+                sx={{ textTransform: "none" }}
+              >
+                Seleccionar archivo CSV
+                <input
+                  hidden
+                  accept=".csv"
+                  type="file"
+                  onChange={handleCsvUpload}
+                />
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="secondary"
+                disabled={!csvFile}
+              >
+                Subir productos
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+      )}
 
       {/* ================= OTRAS CONFIGURACIONES ================= */}
-      {/* ======================================================== */}
-      {/* ======================================================== */}
-      {/* ======================================================== */}
-
-      
-      {tabValue === 1 && (
+      {tabValue === 2 && (
         <Box>
           <Typography variant="subtitle1" gutterBottom>
             🔧 Otras configuraciones
@@ -147,4 +219,4 @@ const Configuracion = () => {
   );
 };
 
-export default Configuracion;
+export default AdminConfiguracion;

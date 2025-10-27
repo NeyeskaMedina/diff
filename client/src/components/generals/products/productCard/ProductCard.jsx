@@ -9,6 +9,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddToCartButton from "../../buttons/addToCartButton/AddToCartButton.jsx";
 import AddToCartButtonIcon from "../../buttons/addToCartButton/AddToCartButtonIcon.jsx";
+import { useCart } from "../../../../context/CartContext.jsx";
+import { handleAddToCart } from '../../../../assets/utils/CartUtils.js';
 
 const ProductCard = ({ product, onOpenModal }) => {
   const {
@@ -21,6 +23,7 @@ const ProductCard = ({ product, onOpenModal }) => {
   } = product;
 
   const [hovered, setHovered] = useState(false);
+  const { addToCart } = useCart();
 
   return (
     <Box
@@ -161,7 +164,7 @@ const ProductCard = ({ product, onOpenModal }) => {
         >
           <AddToCartButton
             fullWidth
-            onClick={() => console.log("Añadido:", id)}
+            onClick={() => handleAddToCart(product, addToCart)}
             sx={{
               width: "100%",
               height: "100%",
@@ -193,7 +196,7 @@ const ProductCard = ({ product, onOpenModal }) => {
         >
           <AddToCartButtonIcon
             fullWidth
-            onClick={() => console.log("Añadido (ícono):", id)}
+            onClick={() => handleAddToCart(product, addToCart)}
             sx={{
               width: "100%",
               height: "100%",

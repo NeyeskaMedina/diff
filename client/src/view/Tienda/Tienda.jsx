@@ -9,6 +9,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import BreadcrumbsStore from "../../components/main/store/BreadcrumbsStore";
 import AddToCartButtonIcon from '../../components/generals/buttons/addToCartButton/AddToCartButtonIcon.jsx';
 import AddToCartButton from '../../components/generals/buttons/addToCartButton/AddToCartButton.jsx';
+import { useCart } from "../../context/CartContext.jsx";
+import { handleAddToCart } from '../../assets/utils/CartUtils.js';
 
 const categories = [
   'Ropa',
@@ -60,6 +62,9 @@ export default function Tienda() {
     const [hoveredImage, setHoveredImage] = useState(false);
   const { categoria } = useParams(); // 👈 leemos la categoría desde la URL
   const navigate = useNavigate();
+  const { addToCart } = useCart();
+
+
 
   const [page, setPage] = useState(1);
   const isMobile = useMediaQuery('(max-width:900px)');
@@ -78,6 +83,7 @@ export default function Tienda() {
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
+
 
   const handleCategoryClick = (cat) => {
     navigate(`/tienda/${slugify(cat)}`);
@@ -166,7 +172,7 @@ export default function Tienda() {
                               >
                                 <AddToCartButton
                                   fullWidth
-                                  onClick={() => console.log("Añadir:", product.id)}
+                                  onClick={() => handleAddToCart(product, addToCart)}
                                   sx={{
                                     width: "100%",
                                     boxSizing: "border-box",
@@ -198,7 +204,7 @@ export default function Tienda() {
                               >
                                 <AddToCartButtonIcon
                                   fullWidth
-                                  onClick={() => console.log("Carrito:", product.id)}
+                                  onClick={() => handleAddToCart(product, addToCart)}
                                   sx={{
                                     width: "100%",
                                     boxSizing: "border-box",
