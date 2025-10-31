@@ -14,12 +14,17 @@ import MobileMenu from "../../generals/menu/mobileMenu/MobileMenu";
 import CartModals from "../../main/shoppingCart/cartModals/CartModals";
 import AuthModal from "../../generals/modals/account/AuthModal";
 import AccountMenu from "../../generals/modals/account/AccountMenu";
-import { UserContext } from "../../../context/UserContext";
+import { useCart } from "../../../context/CartContext.jsx";
+import { useFavorites } from "../../../context/FavoriteContext.jsx";
+// ✅ Importamos useNavigate para redirigir
+import { useNavigate } from "react-router-dom";
 
 const HeaderSection = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   const [menuOpen, setMenuOpen] = useState(false);
-  const { cartItems, setCartItems } = useContext(UserContext);
+  const { cartItems } = useCart();
+  const { favorites } = useFavorites();
+  const navigate = useNavigate();
 
   // 👉 Estado de autenticación
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -47,6 +52,18 @@ const HeaderSection = () => {
   const [openCart, setOpenCart] = useState(false);
   const handleOpenCart = () => setOpenCart(true);
   const handleCloseCart = () => setOpenCart(false);
+
+  // ✅ Cantidad de favoritos (si el contexto devuelve un array)
+  const favoriteCount = favorites?.length || 0;
+
+  // ✅ Función para abrir la vista de favoritos
+  const handleOpenFavorites = () => {
+    if (isAuthenticated) {
+      navigate("/favoritos");
+    } else {
+      setOpenAuthModal(true); // Si no está logueado, pide login
+    }
+  };
 
   return (
     <>
@@ -110,9 +127,9 @@ const HeaderSection = () => {
                 />
               )}
 
-              {/* Favoritos */}
-              <IconButton color="inherit">
-                <Badge badgeContent={2} color="custom">
+              {/* ✅ Favoritos con cantidad desde el contexto */}
+              <IconButton color="inherit" onClick={handleOpenFavorites}>
+                <Badge badgeContent={favoriteCount} color="custom">
                   <FavoriteBorderIcon />
                 </Badge>
               </IconButton>

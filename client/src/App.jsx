@@ -1,8 +1,11 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { ContextProvider } from './context/UserContext';
 import { CartProvider } from './context/CartContext.jsx';
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+import { ToastContainer } from 'react-toastify';
+import { FavoritesProvider } from './context/FavoriteContext.jsx';
 import theme from "./assets/utils/Theme.jsx";
 import Home from "./view/Home/Home.jsx"
 import Tienda from "./view/Tienda/Tienda.jsx";
@@ -17,6 +20,7 @@ import MiCuenta from './view/Cuenta/MiCuenta/MiCuenta.jsx';
 import Admin from './view/Cuenta/Admin/Admin.jsx';
 import ProtectedRoute from './context/ProtectedRoute.jsx';
 import ScrollToTop from './components/generals/scroll/ScrollToTop.jsx';
+import FavoriteProducts from './view/Cuenta/MiCuenta/FavoriteProducts.jsx';
 
 
 function App() {
@@ -24,6 +28,7 @@ function App() {
   return (
     <>
       <ContextProvider>
+        <FavoritesProvider>
         <CartProvider>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
@@ -59,6 +64,14 @@ function App() {
                         }
                     />
                     <Route
+                        path ='/favoritos'
+                        element ={
+                        <ProtectedRoute>
+                          <FavoriteProducts/>
+                        </ProtectedRoute>
+                        }
+                    />
+                    <Route
                         path ='/admin'
                         element ={
                         <ProtectedRoute>
@@ -77,7 +90,9 @@ function App() {
               <Footer />
             </footer>
             </ThemeProvider>
+          <ToastContainer />
       </CartProvider>
+      </FavoritesProvider>
       </ContextProvider>
     </>
   )

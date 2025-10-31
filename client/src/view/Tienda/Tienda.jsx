@@ -20,8 +20,7 @@ const categories = [
   'Descanso',
   'Juego',
   'Lactancia',
-  'Accesorios de auto',
-  'Desodorantes Spray'
+  'Accesorios de auto'
 ];
 
 const allProducts = [

@@ -12,9 +12,9 @@ import {
 
 const categories = [
   { id: 1, name: "Ropa", img: "/img/categorias/Ropa.jpg" },
-  { id: 2, name: "Artículos de Higiene", img: "/img/categorias/Higiene.jpg" },
+  { id: 2, name: "Articulos de Higiene", img: "/img/categorias/Higiene.jpg" },
   { id: 3, name: "Seguridad", img: "/img/categorias/Ropa.jpg" },
-  { id: 4, name: "Alimentación", img: "/img/categorias/Higiene.jpg" },
+  { id: 4, name: "Alimentacion", img: "/img/categorias/Higiene.jpg" },
   { id: 5, name: "Descanso", img: "/img/categorias/Ropa.jpg" },
   { id: 6, name: "Juego", img: "/img/categorias/Higiene.jpg" },
   { id: 7, name: "Lactancia", img: "/img/categorias/Higiene.jpg" },
