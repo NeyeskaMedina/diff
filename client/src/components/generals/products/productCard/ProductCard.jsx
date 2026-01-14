@@ -8,17 +8,11 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import AddToCartButton from "../../buttons/addToCartButton/AddToCartButton.jsx";
-import AddToCartButtonIcon from "../../buttons/addToCartButton/AddToCartButtonIcon.jsx";
-import { useCart } from "../../../../context/CartContext.jsx";
-import { handleAddToCart } from "../../../../assets/utils/CartUtils.js";
 import { useFavorites } from "../../../../context/FavoriteContext.jsx";
+import ActionAddToCartButton from "../../buttons/addToCartButton/ActionAddToCartButton.jsx";
 
 const ProductCard = ({ product, onOpenModal }) => {
   const { id, image, name, price, oldPrice, discount } = product;
-  const [hovered, setHovered] = useState(false);
-
-  const { addToCart } = useCart();
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites(); 
 
   const handleFavoriteClick = () => {
@@ -156,81 +150,7 @@ const ProductCard = ({ product, onOpenModal }) => {
       </Box>
 
       {/* Botones con transición hover */}
-      <Box
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        sx={{
-          position: "relative",
-          width: "100%",
-          maxWidth: 200,
-          height: 40,
-        }}
-      >
-        {/* Botón normal */}
-        <Box
-          sx={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            transition: "all 0.3s ease",
-            opacity: hovered ? 0 : 1,
-            transform: hovered ? "translateY(-10px)" : "translateY(0)",
-          }}
-        >
-          <AddToCartButton
-            fullWidth
-            onClick={() => handleAddToCart(product, addToCart)}
-            sx={{
-              width: "100%",
-              height: "100%",
-              color: "#000",
-              backgroundColor: "transparent",
-              border: "2px solid",
-              borderColor: "var(--product-btn-addToCart)",
-              fontWeight: "bold",
-              textTransform: "none",
-              borderRadius: "20px",
-              "&:hover": {
-                backgroundColor: "var(--product-btn-addToCart)",
-                color: "#fff",
-              },
-            }}
-          />
-        </Box>
-
-        {/* Botón con ícono */}
-        <Box
-          sx={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            transition: "all 0.3s ease",
-            opacity: hovered ? 1 : 0,
-            transform: hovered ? "translateY(0)" : "translateY(10px)",
-          }}
-        >
-          <AddToCartButtonIcon
-            fullWidth
-            onClick={() => handleAddToCart(product, addToCart)}
-            sx={{
-              width: "100%",
-              height: "100%",
-              color: "#000",
-              backgroundColor: "transparent",
-              border: "2px solid",
-              borderColor: "var(--product-btn-addToCart)",
-              fontWeight: "bold",
-              textTransform: "none",
-              borderRadius: "20px",
-              px: 3,
-              "&:hover": {
-                backgroundColor: "var(--product-btn-addToCart)",
-                color: "#fff",
-              },
-            }}
-          />
-        </Box>
-      </Box>
+      <ActionAddToCartButton product={product} />
     </Box>
   );
 };

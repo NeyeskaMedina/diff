@@ -48,7 +48,9 @@ const CartModals = ({ open, onClose }) => {
           borderBottom: "1px solid #ddd",
         }}
       >
-        <Typography variant="h6">Carrito</Typography>
+        <Typography sx={{ fontWeight: "bold", color: "custom.btnColorGreen" }} variant="h6">
+            Carrito
+        </Typography>
         <IconButton onClick={onClose}>
           <CloseIcon />
         </IconButton>
@@ -89,7 +91,7 @@ const CartModals = ({ open, onClose }) => {
           >
             <ShoppingCartIcon sx={{ fontSize: 60, color: "gray" }} />
             <Typography variant="h6">No hay productos en el carrito.</Typography>
-            <Button variant="contained" color="primary" onClick={onClose}>
+            <Button variant="contained" onClick={onClose} sx={{ backgroundColor: "custom.btnColorGreen" }}>
               Volver a la tienda
             </Button>
           </Box>
@@ -107,14 +109,14 @@ const CartModals = ({ open, onClose }) => {
             gap: 1,
           }}
         >
-          <Typography variant="h6" sx={{ textAlign: "right" }}>
+          <Typography variant="h6" sx={{ textAlign: "right", fontWeight: "bold" }}>
             Subtotal: ${subtotal.toLocaleString()}
           </Typography>
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Button fullWidth variant="outlined" onClick={onClose}>
+            <Button fullWidth variant="outlined" onClick={onClose} sx={{ borderColor: "custom.btnColorGreen", color: "custom.btnColorGreen" }}>
               Ver carrito
             </Button>
-            <Button fullWidth variant="contained" color="primary">
+            <Button fullWidth variant="contained" sx={{ backgroundColor: "custom.btnColorGreen" }}>
               Finalizar compra
             </Button>
           </Box>

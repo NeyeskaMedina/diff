@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Escritorio from "../../../components/main/account/Escritorio";
 import Pedidos from "../../../components/main/account/Pedidos";
 import Direcciones from "../../../components/main/account/Direcciones";
-import Configuracion from "../../../components/main/account/Configuracion";
+import Configuracion from "../../../components/main/account/config/userAccount/Configuracion";
 // import Salir from "./Salir";
 
 const menuItems = [

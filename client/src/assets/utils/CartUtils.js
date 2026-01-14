@@ -1,3 +1,3 @@
-export const handleAddToCart = (product, addToCart) => {
-  addToCart(product);
+export const handleAddToCart = (product, cantidad, addToCart) => {
+  addToCart(product, cantidad);
 };

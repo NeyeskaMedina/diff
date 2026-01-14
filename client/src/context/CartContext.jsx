@@ -27,14 +27,14 @@ export const CartProvider = ({ children }) => {
   //..................................................
   //..................................................
   //..................................................
-  const addToCart = (product) => {
+  const addToCart = (product, cantidad) => {
     setCartItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
         // Si ya existe, aumentamos la cantidad
         return prev.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + cantidad }
             : item
         );
       } else {

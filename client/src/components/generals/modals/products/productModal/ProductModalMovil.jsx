@@ -1,17 +1,18 @@
 // ProductModalMovil.jsx
 import React, { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import AddToCartButton from "../../../buttons/addToCartButton/AddToCartButton";
-import AddToCartButtonIcon from "../../../buttons/addToCartButton/AddToCartButtonIcon";
-import { useCart } from "../../../../../context/CartContext.jsx";
-import { handleAddToCart } from '../../../../../assets/utils/CartUtils.js';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ProductModalFooter from "./ProductModalFooter";
 import CartIncrement from "../../../buttons/cartButtons/CartIncrement";
+import { useNavigate } from "react-router-dom";
+import ActionAddToCartButton from "../../../buttons/addToCartButton/ActionAddToCartButton.jsx";
+
+
 
 const ProductModalMovil = ({ product }) => {
-  const [hovered, setHovered] = useState(false);
-  const { addToCart } = useCart();
+  const navigate = useNavigate();
+  const [amount, setAmount] = useState(1);
+
   return (
     <Box sx={{
         display: "flex",
@@ -34,6 +35,20 @@ const ProductModalMovil = ({ product }) => {
           objectFit: "contain"
         }}
       />
+      <Button
+        variant="outlined"
+        sx={{
+          borderRadius: "20px",
+          fontWeight: "bold",
+          textTransform: "none",
+          borderColor: "var(--product-btn-addToCart)",
+          color: "var(--product-btn-addToCart)",
+        }}
+        onClick={() => navigate(`/detalle-producto/${product.id}`, { state: { product } })}
+      >
+        Ver Detalles
+      </Button>
+
       <Typography variant="h6" fontWeight="700" textAlign="center">
         {product.name}
       </Typography>
@@ -63,87 +78,13 @@ const ProductModalMovil = ({ product }) => {
 
       <Box sx={{ display: "flex", gap: 2, mt: "auto", width: "100%" }}>
         <Box sx={{ width: "100%", mt: 2, display: "flex", flexDirection: "row", alignItems: "center", gap: 2 }}>
-              <CartIncrement stock={product.stock} onChange={(value) => console.log("Cantidad:", value)} />
-        {/* 🎯 Aquí ocurre la magia del hover */}
-              <Box
-                sx={{
-                  position: "relative",
-                  width: "100%",
-                  maxWidth: 350, // 🔥 mismo límite para ambos
-                  height: 50,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-              >
-                {/* Botón clásico */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    width: "100%",
-                    opacity: hovered ? 0 : 1,
-                    transform: hovered ? "translateY(-10px)" : "translateY(0)",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  
-                  <AddToCartButton
-                    fullWidth
-                    onClick={() => handleAddToCart(product, addToCart)}
-                    sx={{
-                      width: "100%", // 🔥 mismo ancho
-                      boxSizing: "border-box",
-                      color: "#000",
-                      backgroundColor: "transparent",
-                      border: "2px solid",
-                      borderColor: "var(--product-btn-addToCart)",
-                      fontWeight: "bold",
-                      textTransform: "none",
-                      borderRadius: "20px",
-                      cursor: "pointer",
-                      "&:hover": {
-                        backgroundColor: "var(--product-btn-addToCart)",
-                        color: "#fff",
-                      },
-                    }}
-                  />
-                </Box>
-              
-                {/* Botón con ícono */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    width: "100%",
-                    opacity: hovered ? 1 : 0,
-                    transform: hovered ? "translateY(0)" : "translateY(10px)",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  <AddToCartButtonIcon
-                    fullWidth
-                    onClick={() => handleAddToCart(product, addToCart)}
-                    sx={{
-                      width: "100%", // 🔥 igual ancho
-                      boxSizing: "border-box",
-                      color: "#000",
-                      backgroundColor: "transparent",
-                      border: "2px solid",
-                      borderColor: "var(--product-btn-addToCart)",
-                      fontWeight: "bold",
-                      textTransform: "none",
-                      borderRadius: "20px",
-                      cursor: "pointer",
-                      "&:hover": {
-                        backgroundColor: "var(--product-btn-addToCart)",
-                        color: "#fff",
-                      },
-                    }}
-                  />
-                </Box>
-              </Box>
-      
+          <CartIncrement
+            stock={product.stock}
+            onChange={(value) => setAmount(value)}
+          />
+        {/* 🎯 Botón de añadir al carrito con hover animado */}
+        <ActionAddToCartButton product={product} cantidad={amount} />
+
         </Box>
       </Box>
       <ProductModalFooter category={product.category} />

@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { ToastContainer } from 'react-toastify';
 import { FavoritesProvider } from './context/FavoriteContext.jsx';
+import { ProductProvider } from './context/ProductContext.jsx';
 import theme from "./assets/utils/Theme.jsx";
 import Home from "./view/Home/Home.jsx"
 import Tienda from "./view/Tienda/Tienda.jsx";
@@ -21,6 +22,7 @@ import Admin from './view/Cuenta/Admin/Admin.jsx';
 import ProtectedRoute from './context/ProtectedRoute.jsx';
 import ScrollToTop from './components/generals/scroll/ScrollToTop.jsx';
 import FavoriteProducts from './view/Cuenta/MiCuenta/FavoriteProducts.jsx';
+import ProductDetail from './view/Tienda/Products/ProductDetail.jsx';
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
   return (
     <>
       <ContextProvider>
+        <ProductProvider>
         <FavoritesProvider>
         <CartProvider>
             <ThemeProvider theme={theme}>
@@ -45,6 +48,10 @@ function App() {
                     <Route
                         path ='/'
                         element ={<Home/>}
+                    />
+                    <Route
+                        path ='/producto/:id'
+                        element ={<ProductDetail/>}
                     />
                     <Route
                         path ='/tienda'
@@ -93,6 +100,7 @@ function App() {
           <ToastContainer />
       </CartProvider>
       </FavoritesProvider>
+      </ProductProvider>
       </ContextProvider>
     </>
   )

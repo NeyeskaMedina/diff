@@ -1,45 +1,96 @@
-import React from "react";
-import { Box, InputBase, IconButton } from "@mui/material";
+import React, { useState, useContext } from "react";
+import { Box, InputBase, IconButton, List, ListItem, ListItemButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { ProductContext } from "../../../context/ProductContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        width: "100%",
-        maxWidth: 500,
-        borderRadius: "50px",
-        overflow: "hidden",
-        bgcolor: "#fff",
-        boxShadow: 1,
-      }}
-    >
-      {/* Input */}
-      <InputBase
-        placeholder="Buscar productos..."
-        sx={{
-          flex: 1,
-          px: 2,
-          py: 0.5,
-        }}
-      />
+  const { productItems } = useContext(ProductContext);
+  const [searchText, setSearchText] = useState("");
+  const [filteredItems, setFilteredItems] = useState([]);
+  const navigate = useNavigate();
 
-      {/* Botón con lupa */}
-      <IconButton
+  const handleSearch = (text) => {
+    setSearchText(text);
+
+    if (!text.trim()) {
+      setFilteredItems([]);
+      return;
+    }
+
+    const filtered = productItems.filter((item) =>
+      item.name.toLowerCase().includes(text.toLowerCase())
+    );
+
+    setFilteredItems(filtered);
+  };
+
+  const handleSelectProduct = (product) => {
+    setSearchText("");
+    setFilteredItems([]);
+
+    // 👉 Navega a la vista de detalle
+    navigate(`/producto/${product.id}`);
+  };
+
+  return (
+    <Box sx={{ position: "relative", width: "100%", maxWidth: 500 }}>
+      <Box
         sx={{
-          bgcolor: "var(--search-bg)",
-          borderRadius: 0,
-          borderTopRightRadius: "50px",
-          borderBottomRightRadius: "50px",
-          color: "var(--search-color)",
-          px: 2,
-          "&:hover": { bgcolor: "var(--search-hover)" },
+          display: "flex",
+          alignItems: "center",
+          borderRadius: "50px",
+          overflow: "hidden",
+          bgcolor: "#fff",
+          boxShadow: 1,
         }}
       >
-        <SearchIcon />
-      </IconButton>
+        <InputBase
+          placeholder="Buscar productos..."
+          value={searchText}
+          onChange={(e) => handleSearch(e.target.value)}
+          sx={{ flex: 1, px: 2, py: 0.5 }}
+        />
+        <IconButton
+          sx={{
+            bgcolor: "var(--search-bg)",
+            borderRadius: 0,
+            borderTopRightRadius: "50px",
+            borderBottomRightRadius: "50px",
+            color: "var(--search-color)",
+            px: 2,
+            "&:hover": { bgcolor: "var(--search-hover)" },
+          }}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Box>
+
+      {filteredItems.length > 0 && (
+        <List
+          sx={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
+            bgcolor: "#fff",
+            boxShadow: 1,
+            borderRadius: 2,
+            mt: 0.5,
+            maxHeight: 200,
+            overflowY: "auto",
+            zIndex: 10,
+          }}
+        >
+          {filteredItems.map((item) => (
+            <ListItem key={item.id} disablePadding>
+              <ListItemButton onClick={() => handleSelectProduct(item)}>
+                {item.name}
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      )}
     </Box>
   );
 };

@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Escritorio from "../../../components/main/account/Escritorio";
 import Pedidos from "../../../components/main/account/Pedidos";
 // import Clientes from "../../../components/main/account/Direcciones";
-import Configuracion from "../../../components/main/account/Configuracion";
+import AdminConfiguracion from "../../../components/main/account/config/admin/AdminConfiguracion";
 // import Salir from "./Salir";
 
 const menuItems = [
@@ -42,7 +42,7 @@ const Admin = () => {
       case "clientes":
         return <Clientes />;
       case "configuracion":
-        return <Configuracion />;
+        return <AdminConfiguracion />;
       case "salir":
         return <Salir />;
       default:
