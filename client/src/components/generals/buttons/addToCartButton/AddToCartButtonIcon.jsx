@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-const AddToCartButton = ({ onClick, sx, disabled, fullWidth }) => {
+const AddToCartButtonIcon = ({ onClick, sx, disabled, fullWidth }) => {
   return (
     <Button
       variant="contained"
@@ -9,9 +10,9 @@ const AddToCartButton = ({ onClick, sx, disabled, fullWidth }) => {
       disabled={disabled}
       fullWidth={fullWidth}
     >
-      AÑADIR AL CARRITO
+      <AddShoppingCartIcon />
     </Button>
   );
 };
 
-export default AddToCartButton;
+export default AddToCartButtonIcon;

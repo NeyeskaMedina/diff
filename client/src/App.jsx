@@ -1,7 +1,12 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { ContextProvider } from './context/UserContext';
+import { CartProvider } from './context/CartContext.jsx';
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+import { ToastContainer } from 'react-toastify';
+import { FavoritesProvider } from './context/FavoriteContext.jsx';
+import { ProductProvider } from './context/ProductContext.jsx';
 import theme from "./assets/utils/Theme.jsx";
 import Home from "./view/Home/Home.jsx"
 import Tienda from "./view/Tienda/Tienda.jsx";
@@ -13,6 +18,11 @@ import WhatsApp from './components/generals/buttons/whatsapp/WhatsApp.jsx';
 import Ingreso from './view/Cuenta/Login/Ingreso.jsx';
 import RecuperarClave from './view/Cuenta/Recuperacion/RecuperarClave.jsx';
 import MiCuenta from './view/Cuenta/MiCuenta/MiCuenta.jsx';
+import Admin from './view/Cuenta/Admin/Admin.jsx';
+import ProtectedRoute from './context/ProtectedRoute.jsx';
+import ScrollToTop from './components/generals/scroll/ScrollToTop.jsx';
+import FavoriteProducts from './view/Cuenta/MiCuenta/FavoriteProducts.jsx';
+import ProductDetail from './view/Tienda/Products/ProductDetail.jsx';
 
 
 function App() {
@@ -20,45 +30,77 @@ function App() {
   return (
     <>
       <ContextProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-      <nav>
-        <NavbarDiff/>
-      </nav>
-      <section style={{ marginTop: '50px' }}>
-              <HeaderSection />
-              <DesktopMenu />
-      </section>
-      <main>
-          <Routes>
-              <Route
-                  path ='/'
-                  element ={<Home/>}
-              />
-              <Route
-                  path ='/tienda'
-                  element ={<Tienda/>}
-              />
-              <Route path="/tienda/:categoria" element={<Tienda />} />
-              <Route
-                  path ='/ingresar'
-                  element ={<Ingreso/>}
-              />
-              <Route
-                  path ='/mi-cuenta'
-                  element ={<MiCuenta/>}
-              />
-              <Route
-                  path ='/recuperar-cuenta'
-                  element ={<RecuperarClave/>}
-              />
-          </Routes>
-      </main>
-      <WhatsApp />
-      <footer>
-        <Footer />
-      </footer>
-      </ThemeProvider>
+        <ProductProvider>
+        <FavoritesProvider>
+        <CartProvider>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+            <nav>
+              <NavbarDiff/>
+            </nav>
+            <section style={{ marginTop: '50px' }}>
+                    <HeaderSection />
+                    <DesktopMenu />
+            </section>
+            <main>
+              <ScrollToTop />
+                <Routes>
+                    <Route
+                        path ='/'
+                        element ={<Home/>}
+                    />
+                    <Route
+                        path ='/producto/:id'
+                        element ={<ProductDetail/>}
+                    />
+                    <Route
+                        path ='/tienda'
+                        element ={<Tienda/>}
+                    />
+                    <Route path="/tienda/:categoria" element={<Tienda />} />
+                    <Route
+                        path ='/ingresar'
+                        element ={<Ingreso/>}
+                    />
+                    <Route
+                        path ='/mi-cuenta'
+                        element ={
+                        <ProtectedRoute>
+                          <MiCuenta/>
+                        </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path ='/favoritos'
+                        element ={
+                        <ProtectedRoute>
+                          <FavoriteProducts/>
+                        </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path ='/admin'
+                        element ={
+                        <ProtectedRoute>
+                          <Admin/>
+                        </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path ='/recuperar-cuenta'
+                        element ={<RecuperarClave/>}
+                    />
+                </Routes>
+            </main>
+            <WhatsApp />
+            <footer>
+              <Footer />
+            </footer>
+            </ThemeProvider>
+          <ToastContainer />
+      </CartProvider>
+      </FavoritesProvider>
+      </ProductProvider>
       </ContextProvider>
     </>
   )

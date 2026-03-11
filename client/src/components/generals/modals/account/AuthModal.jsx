@@ -58,7 +58,7 @@ const AuthModal = ({ open, onClose }) => {
 
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           fullWidth
           sx={{ mt: 2, py: 1.2, borderRadius: "8px" }}
         >

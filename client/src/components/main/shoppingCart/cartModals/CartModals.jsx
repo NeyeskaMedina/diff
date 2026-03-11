@@ -14,9 +14,15 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useCart } from "../../../../context/CartContext.jsx"; 
 
-const CartModals = ({ open, onClose, cartItems }) => {
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+const CartModals = ({ open, onClose }) => {
+  const { cartItems } = useCart(); // 👈 Obtiene los productos del contexto
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <Drawer
@@ -25,7 +31,7 @@ const CartModals = ({ open, onClose, cartItems }) => {
       onClose={onClose}
       PaperProps={{
         sx: {
-          width: { xs: "100%", sm: 400 }, // full en mobile, 400px en desktop
+          width: { xs: "100%", sm: 400 },
           display: "flex",
           flexDirection: "column",
           height: "100vh",
@@ -42,13 +48,15 @@ const CartModals = ({ open, onClose, cartItems }) => {
           borderBottom: "1px solid #ddd",
         }}
       >
-        <Typography variant="h6">Carrito</Typography>
+        <Typography sx={{ fontWeight: "bold", color: "custom.btnColorGreen" }} variant="h6">
+            Carrito
+        </Typography>
         <IconButton onClick={onClose}>
           <CloseIcon />
         </IconButton>
       </Box>
 
-      {/* Contenido scrollable */}
+      {/* Contenido */}
       <Box sx={{ flex: 1, overflowY: "auto", p: 2 }}>
         {cartItems.length > 0 ? (
           <List>
@@ -83,14 +91,14 @@ const CartModals = ({ open, onClose, cartItems }) => {
           >
             <ShoppingCartIcon sx={{ fontSize: 60, color: "gray" }} />
             <Typography variant="h6">No hay productos en el carrito.</Typography>
-            <Button variant="contained" color="primary" onClick={onClose}>
+            <Button variant="contained" onClick={onClose} sx={{ backgroundColor: "custom.btnColorGreen" }}>
               Volver a la tienda
             </Button>
           </Box>
         )}
       </Box>
 
-      {/* Footer fijo */}
+      {/* Footer */}
       {cartItems.length > 0 && (
         <Box
           sx={{
@@ -101,14 +109,14 @@ const CartModals = ({ open, onClose, cartItems }) => {
             gap: 1,
           }}
         >
-          <Typography variant="h6" sx={{ textAlign: "right" }}>
+          <Typography variant="h6" sx={{ textAlign: "right", fontWeight: "bold" }}>
             Subtotal: ${subtotal.toLocaleString()}
           </Typography>
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Button fullWidth variant="outlined" onClick={onClose}>
+            <Button fullWidth variant="outlined" onClick={onClose} sx={{ borderColor: "custom.btnColorGreen", color: "custom.btnColorGreen" }}>
               Ver carrito
             </Button>
-            <Button fullWidth variant="contained" color="primary">
+            <Button fullWidth variant="contained" sx={{ backgroundColor: "custom.btnColorGreen" }}>
               Finalizar compra
             </Button>
           </Box>

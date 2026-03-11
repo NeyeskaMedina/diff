@@ -9,7 +9,6 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 const Escritorio = ({ onSelect }) => {
   const cards = [
     { key: "pedidos", label: "Pedidos", icon: <AssignmentIcon fontSize="large" /> },
-    { key: "descargas", label: "Descargas", icon: <DownloadIcon fontSize="large" /> },
     { key: "direcciones", label: "Direcciones", icon: <RoomIcon fontSize="large" /> },
     { key: "configuracion", label: "Configuración", icon: <HandymanIcon fontSize="large" /> },
     { key: "salir", label: "Salir", icon: <ExitToAppIcon fontSize="large" /> },

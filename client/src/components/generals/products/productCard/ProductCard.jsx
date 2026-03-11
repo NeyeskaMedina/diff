@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -6,25 +6,29 @@ import {
   Tooltip,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import AddToCartButton from "../../buttons/addToCartButton/AddToCartButton.jsx";
+import { useFavorites } from "../../../../context/FavoriteContext.jsx";
+import ActionAddToCartButton from "../../buttons/addToCartButton/ActionAddToCartButton.jsx";
 
-const ProductCard = ({ product, onOpenModal  }) => {
-  const {
-    id,
-    image,
-    name,
-    price,
-    oldPrice,
-    discount,
-  } = product;
+const ProductCard = ({ product, onOpenModal }) => {
+  const { id, image, name, price, oldPrice, discount } = product;
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites(); 
+
+  const handleFavoriteClick = () => {
+    if (isFavorite(id)) {
+      removeFromFavorites(id);
+    } else {
+      addToFavorites(product);
+    }
+  };
 
   return (
     <Box
       key={id}
       sx={{
         width: 250,
-        height: 'auto',
+        height: "auto",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -34,10 +38,8 @@ const ProductCard = ({ product, onOpenModal  }) => {
         boxShadow: 2,
         backgroundColor: "white",
         transition: "transform 0.2s",
-        "&:hover": {
-          transform: "translateY(-4px)",
-        },
-        position: "relative", // Solo para badge/iconos
+        "&:hover": { transform: "translateY(-4px)" },
+        position: "relative",
       }}
     >
       {/* Badge de descuento */}
@@ -70,19 +72,24 @@ const ProductCard = ({ product, onOpenModal  }) => {
           gap: 1,
         }}
       >
-        <Tooltip title="Favorito">
-          <IconButton size="small">
-            <FavoriteBorderIcon fontSize="xl_pzl" />
+        <Tooltip title={isFavorite(id) ? "Eliminar de favoritos" : "Añadir a favoritos"}>
+          <IconButton size="small" onClick={handleFavoriteClick}>
+            {isFavorite(id) ? (
+              <FavoriteIcon color="error" fontSize="medium" />
+            ) : (
+              <FavoriteBorderIcon fontSize="medium" />
+            )}
           </IconButton>
         </Tooltip>
+
         <Tooltip title="Vista rápida">
           <IconButton size="small" onClick={() => onOpenModal(product)}>
-            <VisibilityIcon fontSize="xl_pzl" />
+            <VisibilityIcon fontSize="medium" />
           </IconButton>
         </Tooltip>
       </Box>
 
-      {/* Contenido principal con flex */}
+      {/* Contenido principal */}
       <Box
         sx={{
           display: "flex",
@@ -92,7 +99,6 @@ const ProductCard = ({ product, onOpenModal  }) => {
           width: "100%",
         }}
       >
-        {/* Imagen */}
         <Box
           component="img"
           src={image}
@@ -105,7 +111,6 @@ const ProductCard = ({ product, onOpenModal  }) => {
           }}
         />
 
-        {/* Nombre */}
         <Typography
           variant="body1"
           sx={{
@@ -118,24 +123,34 @@ const ProductCard = ({ product, onOpenModal  }) => {
           {name}
         </Typography>
 
-        {/* Precio */}
-        <Box sx={{ textAlign: "center", mb: 2, display: "flex", justifyContent: 'center' }}>
+        <Box
+          sx={{
+            textAlign: "center",
+            mb: 2,
+            display: "flex",
+            justifyContent: "center",
+            gap: 1,
+          }}
+        >
           {oldPrice && (
             <Typography
               variant="h6"
               sx={{ color: "gray", textDecoration: "line-through" }}
             >
-              ${oldPrice} {' '}
+              ${oldPrice}
             </Typography>
           )}
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{ color: "custom.priceColor", fontWeight: "bold" }}
+          >
             ${price}
           </Typography>
         </Box>
       </Box>
 
-      {/* Botón Añadir al carrito */}
-      <AddToCartButton onClick={() => console.log("Añadido:", id)} />
+      {/* Botones con transición hover */}
+      <ActionAddToCartButton product={product} />
     </Box>
   );
 };

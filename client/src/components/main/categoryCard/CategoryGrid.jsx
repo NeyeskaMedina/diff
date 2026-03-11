@@ -1,11 +1,20 @@
 import React from "react";
-import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom"; // 🔹 IMPORTANTE: para redirigir
+import {
+  Grid,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+  Box,
+} from "@mui/material";
 
 const categories = [
   { id: 1, name: "Ropa", img: "/img/categorias/Ropa.jpg" },
-  { id: 2, name: "Artículos de Higiene", img: "/img/categorias/Higiene.jpg" },
+  { id: 2, name: "Articulos de Higiene", img: "/img/categorias/Higiene.jpg" },
   { id: 3, name: "Seguridad", img: "/img/categorias/Ropa.jpg" },
-  { id: 4, name: "Alimentación", img: "/img/categorias/Higiene.jpg" },
+  { id: 4, name: "Alimentacion", img: "/img/categorias/Higiene.jpg" },
   { id: 5, name: "Descanso", img: "/img/categorias/Ropa.jpg" },
   { id: 6, name: "Juego", img: "/img/categorias/Higiene.jpg" },
   { id: 7, name: "Lactancia", img: "/img/categorias/Higiene.jpg" },
@@ -14,27 +23,31 @@ const categories = [
 
 const CategoryCard = ({ category, onClick }) => {
   return (
-    <Card sx={{ width: 350, overflow: "hidden", transition: "transform 0.3s", "&:hover": { transform: "scale(1.05)" }  }}>
+    <Card
+      sx={{
+        width: 350,
+        overflow: "hidden",
+        transition: "transform 0.3s",
+        "&:hover": { transform: "scale(1.05)" },
+        position: "relative",
+      }}
+    >
       <CardActionArea onClick={() => onClick(category)}>
         <CardMedia
           component="img"
           height="460"
           image={category.img}
           alt={category.name}
-          sx={{ 
-              transition: "transform 0.3s", 
-              "&:hover": { transform: "scale(1.1)" }
-          }}
         />
         <CardContent
           sx={{
             backgroundColor: "rgba(0,0,0,0.6)",
             color: "white",
             textAlign: "center",
-            position: "absolute", 
+            position: "absolute",
             width: "100%",
             bottom: 0,
-            left: 0, 
+            left: 0,
           }}
         >
           <Typography variant="h6">{category.name}</Typography>
@@ -45,8 +58,13 @@ const CategoryCard = ({ category, onClick }) => {
 };
 
 const CategoryGrid = () => {
+  const navigate = useNavigate(); // 👈 Hook de React Router
+
   const handleClick = (category) => {
-    alert(`Hiciste click en: ${category.name}`);
+    // Convertimos el nombre a formato URL (minúsculas y guiones)
+    const slug = category.name.toLowerCase().replace(/\s+/g, "-");
+    // Redirigimos a la URL
+    navigate(`/tienda/${slug}`);
   };
 
   return (

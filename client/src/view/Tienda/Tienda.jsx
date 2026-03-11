@@ -7,6 +7,10 @@ import {
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useParams, useNavigate } from "react-router-dom";
 import BreadcrumbsStore from "../../components/main/store/BreadcrumbsStore";
+import AddToCartButtonIcon from '../../components/generals/buttons/addToCartButton/AddToCartButtonIcon.jsx';
+import AddToCartButton from '../../components/generals/buttons/addToCartButton/AddToCartButton.jsx';
+import { useCart } from "../../context/CartContext.jsx";
+import { handleAddToCart } from '../../assets/utils/CartUtils.js';
 
 const categories = [
   'Ropa',
@@ -16,8 +20,7 @@ const categories = [
   'Descanso',
   'Juego',
   'Lactancia',
-  'Accesorios de auto',
-  'Desodorantes Spray'
+  'Accesorios de auto'
 ];
 
 const allProducts = [
@@ -54,8 +57,13 @@ const slugify = (str) =>
   str.toLowerCase().replace(/\s+/g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 export default function Tienda() {
+  const [hovered, setHovered] = useState(false);
+    const [hoveredImage, setHoveredImage] = useState(false);
   const { categoria } = useParams(); // 👈 leemos la categoría desde la URL
   const navigate = useNavigate();
+  const { addToCart } = useCart();
+
+
 
   const [page, setPage] = useState(1);
   const isMobile = useMediaQuery('(max-width:900px)');
@@ -74,6 +82,7 @@ export default function Tienda() {
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
+
 
   const handleCategoryClick = (cat) => {
     navigate(`/tienda/${slugify(cat)}`);
@@ -136,13 +145,84 @@ export default function Tienda() {
                     <del>${product.price.toLocaleString()}</del>{" "}
                     <strong>${product.discountPrice.toLocaleString()}</strong>
                   </Typography>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    sx={{ mt: 1, bgcolor: '#F7B801', color: 'black' }}
-                  >
-                    AÑADIR AL CARRITO
-                  </Button>
+                  {/* 🎯 Botón de añadir al carrito con hover animado */}
+                            <Box
+                              sx={{
+                                position: "relative",
+                                width: "100%",
+                                maxWidth: 350,
+                                height: 50,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                              onMouseEnter={() => setHovered(true)}
+                              onMouseLeave={() => setHovered(false)}
+                            >
+                              {/* Botón clásico */}
+                              <Box
+                                sx={{
+                                  position: "absolute",
+                                  width: "100%",
+                                  opacity: hovered ? 0 : 1,
+                                  transform: hovered ? "translateY(-10px)" : "translateY(0)",
+                                  transition: "all 0.3s ease",
+                                }}
+                              >
+                                <AddToCartButton
+                                  fullWidth
+                                  onClick={() => handleAddToCart(product, addToCart)}
+                                  sx={{
+                                    width: "100%",
+                                    boxSizing: "border-box",
+                                    color: "#000",
+                                    backgroundColor: "transparent",
+                                    border: "2px solid",
+                                    borderColor: "var(--product-btn-addToCart)",
+                                    fontWeight: "bold",
+                                    textTransform: "none",
+                                    borderRadius: "20px",
+                                    cursor: "pointer",
+                                    "&:hover": {
+                                      backgroundColor: "var(--product-btn-addToCart)",
+                                      color: "#fff",
+                                    },
+                                  }}
+                                />
+                              </Box>
+                  
+                              {/* Botón con ícono */}
+                              <Box
+                                sx={{
+                                  position: "absolute",
+                                  width: "100%",
+                                  opacity: hovered ? 1 : 0,
+                                  transform: hovered ? "translateY(0)" : "translateY(10px)",
+                                  transition: "all 0.3s ease",
+                                }}
+                              >
+                                <AddToCartButtonIcon
+                                  fullWidth
+                                  onClick={() => handleAddToCart(product, addToCart)}
+                                  sx={{
+                                    width: "100%",
+                                    boxSizing: "border-box",
+                                    color: "#000",
+                                    backgroundColor: "transparent",
+                                    border: "2px solid",
+                                    borderColor: "var(--product-btn-addToCart)",
+                                    fontWeight: "bold",
+                                    textTransform: "none",
+                                    borderRadius: "20px",
+                                    cursor: "pointer",
+                                    "&:hover": {
+                                      backgroundColor: "var(--product-btn-addToCart)",
+                                      color: "#fff",
+                                    },
+                                  }}
+                                />
+                              </Box>
+                            </Box>
                 </CardContent>
               </Card>
             </Grid>
