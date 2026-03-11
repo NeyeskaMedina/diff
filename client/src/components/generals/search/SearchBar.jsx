@@ -1,5 +1,14 @@
 import React, { useState, useContext } from "react";
-import { Box, InputBase, IconButton, List, ListItem, ListItemButton } from "@mui/material";
+import {
+  Box,
+  InputBase,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  Typography,
+  Avatar
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ProductContext } from "../../../context/ProductContext.jsx";
 import { useNavigate } from "react-router-dom";
@@ -28,8 +37,6 @@ const SearchBar = () => {
   const handleSelectProduct = (product) => {
     setSearchText("");
     setFilteredItems([]);
-
-    // 👉 Navega a la vista de detalle
     navigate(`/producto/${product.id}`);
   };
 
@@ -51,6 +58,7 @@ const SearchBar = () => {
           onChange={(e) => handleSearch(e.target.value)}
           sx={{ flex: 1, px: 2, py: 0.5 }}
         />
+
         <IconButton
           sx={{
             bgcolor: "var(--search-bg)",
@@ -74,18 +82,37 @@ const SearchBar = () => {
             left: 0,
             right: 0,
             bgcolor: "#fff",
-            boxShadow: 1,
+            boxShadow: 2,
             borderRadius: 2,
             mt: 0.5,
-            maxHeight: 200,
+            maxHeight: 250,
             overflowY: "auto",
             zIndex: 10,
           }}
         >
           {filteredItems.map((item) => (
             <ListItem key={item.id} disablePadding>
-              <ListItemButton onClick={() => handleSelectProduct(item)}>
-                {item.name}
+              <ListItemButton
+                onClick={() => handleSelectProduct(item)}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2
+                }}
+              >
+                <Avatar
+                  src={item.image}
+                  alt={item.name}
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 2
+                  }}
+                />
+
+                <Typography variant="body2">
+                  {item.name}
+                </Typography>
               </ListItemButton>
             </ListItem>
           ))}

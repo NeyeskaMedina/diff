@@ -12,9 +12,15 @@ const ActionAddToCartButton = ({ product, cantidad = 1 }) => {
   const disabled = product.stock === 0;
 
   const handleClick = () => {
+    const cantidadFinal = cantidad || 1;
+    console.log("Producto:", product.name);
+    console.log("Cantidad a añadir:", cantidadFinal);
+    
+    
     if (!disabled) {
-      handleAddToCart({ ...product }, cantidad, addToCart);
+      handleAddToCart({ ...product }, cantidadFinal, addToCart);
     }
+    
   };
 
   return (

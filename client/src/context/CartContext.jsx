@@ -27,19 +27,20 @@ export const CartProvider = ({ children }) => {
   //..................................................
   //..................................................
   //..................................................
-  const addToCart = (product, cantidad) => {
+  const addToCart = (product, cantidadFinal = 1) => {
+    
     setCartItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
         // Si ya existe, aumentamos la cantidad
         return prev.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + cantidad }
+            ? { ...item, quantity: item.quantity + cantidadFinal }
             : item
         );
       } else {
         // Si no existe, lo agregamos
-        return [...prev, { ...product, quantity: 1 }];
+        return [...prev, { ...product, quantity: cantidadFinal }];
       }
     });
     notify();

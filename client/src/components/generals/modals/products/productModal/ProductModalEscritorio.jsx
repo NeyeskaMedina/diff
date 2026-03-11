@@ -169,7 +169,8 @@ const ProductModalEscritorio = ({ product }) => {
 
 
           {/* 🎯 Botón de añadir al carrito con hover animado */}
-          <ActionAddToCartButton product={product} cantidad={amount} />        </Box>
+          <ActionAddToCartButton product={product} cantidad={amount} />
+        </Box>
 
         <ProductModalFooter category={product.category} />
       </Grid>
