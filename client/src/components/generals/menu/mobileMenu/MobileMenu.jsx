@@ -6,14 +6,15 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  IconButton,
-  InputBase,
   Divider,
   Collapse,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+
+// ✅ IMPORTAMOS TU BUSCADOR REAL
+import SearchBar from "../../search/SearchBar";
 
 const categories = [
   { label: "Inicio", path: "/" },
@@ -28,7 +29,6 @@ const categories = [
   { label: "Contacto", path: "/contacto" },
 ];
 
-// Submenú de Mi Cuenta
 const accountMenu = [
   { label: "Escritorio", path: "/mi-cuenta" },
   { label: "Pedidos", path: "/mi-cuenta/pedidos" },
@@ -48,26 +48,15 @@ const MobileMenu = ({ open, onClose }) => {
   return (
     <Drawer anchor="left" open={open} onClose={onClose}>
       <Box sx={{ width: 280, p: 2 }}>
-        {/* Buscador */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            border: "1px solid #ccc",
-            borderRadius: "30px",
-            px: 2,
-            mb: 2,
-          }}
-        >
-          <InputBase placeholder="Buscar productos..." sx={{ flex: 1 }} />
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
+
+        {/* ✅ BUSCADOR REAL */}
+        <Box sx={{ mb: 2 }}>
+          <SearchBar onProductSelect={onClose} />
         </Box>
 
         <Divider />
 
-        {/* Lista de categorías */}
+        {/* Categorías */}
         <List>
           {categories.map((item) => (
             <ListItem key={item.label} disablePadding>
@@ -77,7 +66,7 @@ const MobileMenu = ({ open, onClose }) => {
             </ListItem>
           ))}
 
-          {/* Sección Mi Cuenta con submenú */}
+          {/* Mi Cuenta */}
           <ListItem disablePadding>
             <ListItemButton onClick={toggleAccount}>
               <ListItemText primary="Mi Cuenta" />

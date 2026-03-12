@@ -1,12 +1,68 @@
-# React + Vite
+# 🛍️ Diffi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/Frontend-React-blue?logo=react)
+![NodeJS](https://img.shields.io/badge/Backend-Node.js-green?logo=node.js)
+![Express](https://img.shields.io/badge/Server-Express-black?logo=express)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue?logo=postgresql)
+![API](https://img.shields.io/badge/API-REST-orange)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-Currently, two official plugins are available:
+Plataforma de **tienda en línea moderna** desarrollada con arquitectura **Full Stack**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+# 🚀 Características
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔎 Búsqueda avanzada de productos
+- 🛒 Carrito de compras
+- 👤 Gestión de clientes
+- 📊 Administración de pedidos
+- 🔐 Sistema de autenticación
+- ⚙ Sistema de configuraciones avanzadas
+- 🌐 API REST
+
+---
+
+# 🧰 Tecnologías utilizadas
+
+## Frontend
+- React
+- Vite
+- Material UI
+- Axios
+
+## Backend
+- Node.js
+- Express
+
+## Base de datos
+- PostgreSQL
+
+---
+
+# 🌐 API
+
+Base URL de la API: "🔨 Mantenimiento"
+
+
+---
+
+<!-- # 🔐 Autenticación
+
+La API utiliza **JWT (JSON Web Token)**.
+
+Las rutas protegidas requieren enviar el token en el header:  -->
+
+
+---
+<!-- 
+# 📦 Endpoints principales
+
+## Login
+## Products
+ -->
+
+
+
+
+

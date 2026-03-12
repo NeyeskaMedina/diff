@@ -19,6 +19,8 @@ import { useCart } from "../../../../context/CartContext.jsx";
 const CartModals = ({ open, onClose }) => {
   const { cartItems } = useCart(); // 👈 Obtiene los productos del contexto
 
+  
+
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0

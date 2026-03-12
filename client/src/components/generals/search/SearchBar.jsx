@@ -13,7 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ProductContext } from "../../../context/ProductContext.jsx";
 import { useNavigate } from "react-router-dom";
 
-const SearchBar = () => {
+const SearchBar = ({ onProductSelect }) => {
   const { productItems } = useContext(ProductContext);
   const [searchText, setSearchText] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
@@ -38,6 +38,11 @@ const SearchBar = () => {
     setSearchText("");
     setFilteredItems([]);
     navigate(`/producto/${product.id}`);
+
+    // cerrar menú si existe la función
+    if (onProductSelect) {
+      onProductSelect();
+    }
   };
 
   return (
