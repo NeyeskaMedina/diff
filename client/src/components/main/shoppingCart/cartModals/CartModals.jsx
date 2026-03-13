@@ -12,12 +12,14 @@ import {
   Divider,
   Box,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useCart } from "../../../../context/CartContext.jsx"; 
 
 const CartModals = ({ open, onClose }) => {
-  const { cartItems } = useCart(); // 👈 Obtiene los productos del contexto
+  const navigate = useNavigate();
+  const { cartItems } = useCart(); 
 
   
 
@@ -115,7 +117,15 @@ const CartModals = ({ open, onClose }) => {
             Subtotal: ${subtotal.toLocaleString()}
           </Typography>
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Button fullWidth variant="outlined" onClick={onClose} sx={{ borderColor: "custom.btnColorGreen", color: "custom.btnColorGreen" }}>
+            <Button
+              fullWidth
+              variant="outlined"
+              onClick={() => navigate(`/detalle-carrito`)}
+              sx={{
+                borderColor: "custom.btnColorGreen",
+                color: "custom.btnColorGreen"
+              }}
+            >
               Ver carrito
             </Button>
             <Button fullWidth variant="contained" sx={{ backgroundColor: "custom.btnColorGreen" }}>

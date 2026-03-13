@@ -23,6 +23,8 @@ import ProtectedRoute from './context/ProtectedRoute.jsx';
 import ScrollToTop from './components/generals/scroll/ScrollToTop.jsx';
 import FavoriteProducts from './view/Cuenta/MiCuenta/FavoriteProducts.jsx';
 import ProductDetail from './view/Tienda/Products/ProductDetail.jsx';
+import CartDetail from './view/Tienda/CartDetails/CartDetail.jsx';
+import PedidoDetalle from './components/main/account/PedidoDetalle.jsx';
 
 
 function App() {
@@ -52,6 +54,14 @@ function App() {
                     <Route
                         path ='/producto/:id'
                         element ={<ProductDetail/>}
+                    />
+                    <Route
+                        path ='/detalle-carrito'
+                        element ={<CartDetail/>}
+                    />
+                    <Route
+                        path="/pedidos/:id"
+                        element={<PedidoDetalle />}
                     />
                     <Route
                         path ='/tienda'
