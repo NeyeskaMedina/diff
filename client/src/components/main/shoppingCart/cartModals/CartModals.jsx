@@ -15,7 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useCart } from "../../../../context/CartContext.jsx"; 
+import { useCart } from "../../../../context/appContext/allContext/CartContext.jsx"; 
 
 const CartModals = ({ open, onClose }) => {
   const navigate = useNavigate();

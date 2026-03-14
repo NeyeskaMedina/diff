@@ -8,6 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import GoogleLoginButton from "../../buttons/googleButtons/GoogleLoginButton.jsx";
 
 const AuthModal = ({ open, onClose }) => {
   return (
@@ -64,6 +65,13 @@ const AuthModal = ({ open, onClose }) => {
         >
           Ingresar
         </Button>
+        {/* Botón de Google */}
+
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+        <IconButton>
+          <GoogleLoginButton />
+        </IconButton>
+      </Box>
 
         <Typography
           variant="body2"

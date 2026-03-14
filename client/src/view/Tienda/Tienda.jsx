@@ -9,7 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import BreadcrumbsStore from "../../components/main/store/BreadcrumbsStore";
 import AddToCartButtonIcon from '../../components/generals/buttons/addToCartButton/AddToCartButtonIcon.jsx';
 import AddToCartButton from '../../components/generals/buttons/addToCartButton/AddToCartButton.jsx';
-import { useCart } from "../../context/CartContext.jsx";
+import { useCart } from "../../context/appContext/allContext/CartContext.jsx";
 import { handleAddToCart } from '../../assets/utils/CartUtils.js';
 
 const categories = [

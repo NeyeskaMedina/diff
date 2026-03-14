@@ -1,6 +1,6 @@
 // src/context/ProductContext.jsx
 import React, { createContext, useState } from "react";
-import { products } from "../assets/utils/Products.js";
+import { products } from "../../../assets/utils/Products.js";
 
 export const ProductContext = createContext();
 
