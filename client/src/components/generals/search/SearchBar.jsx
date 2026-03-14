@@ -10,7 +10,7 @@ import {
   Avatar
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { ProductContext } from "../../../context/ProductContext.jsx";
+import { ProductContext } from "../../../context/appContext/allContext/ProductContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({ onProductSelect }) => {

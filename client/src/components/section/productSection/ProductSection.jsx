@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import ProductCard from "../../generals/products/productCard/ProductCard";
 import ProductModal from "../../generals/modals/products/productModal/ProductModal";
-import { UserContext } from "../../../context/UserContext";
+import { UserContext } from "../../../context/appContext/allContext/UserContext.jsx";
 import { products } from "../../../assets/utils/Products.js";
 
 // const products = [

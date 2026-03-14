@@ -14,8 +14,8 @@ import MobileMenu from "../../generals/menu/mobileMenu/MobileMenu";
 import CartModals from "../../main/shoppingCart/cartModals/CartModals";
 import AuthModal from "../../generals/modals/account/AuthModal";
 import AccountMenu from "../../generals/modals/account/AccountMenu";
-import { useCart } from "../../../context/CartContext.jsx";
-import { useFavorites } from "../../../context/FavoriteContext.jsx";
+import { useCart } from "../../../context/appContext/allContext/CartContext.jsx";
+import { useFavorites } from "../../../context/appContext/allContext/FavoriteContext.jsx";
 // ✅ Importamos useNavigate para redirigir
 import { useNavigate } from "react-router-dom";
 
@@ -27,14 +27,14 @@ const HeaderSection = () => {
   const navigate = useNavigate();
 
   // 👉 Estado de autenticación
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // 👉 Estado para menú/logueado
   const [anchorEl, setAnchorEl] = useState(null);
   const openAccountMenu = Boolean(anchorEl);
 
   // 👉 Estado para modal login/no logueado
-  const [openAuthModal, setOpenAuthModal] = useState(true);
+  const [openAuthModal, setOpenAuthModal] = useState(false);
 
   const handleAccountClick = (event) => {
     if (isAuthenticated) {

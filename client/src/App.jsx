@@ -1,12 +1,13 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
-import { ContextProvider } from './context/UserContext';
-import { CartProvider } from './context/CartContext.jsx';
+// import { ContextProvider } from './context/appContext/allContext/UserContext.jsx';
+// import { CartProvider } from './context/appContext/allContext/CartContext.jsx';
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { ToastContainer } from 'react-toastify';
-import { FavoritesProvider } from './context/FavoriteContext.jsx';
-import { ProductProvider } from './context/ProductContext.jsx';
+// import { FavoritesProvider } from './context/appContext/allContext/FavoriteContext.jsx';
+// import { ProductProvider } from './context/appContext/allContext/ProductContext.jsx';
+// import { GoogleProvider } from './context/appContext/allContext/GoogleContex.jsx';
 import theme from "./assets/utils/Theme.jsx";
 import Home from "./view/Home/Home.jsx"
 import Tienda from "./view/Tienda/Tienda.jsx";
@@ -19,32 +20,29 @@ import Ingreso from './view/Cuenta/Login/Ingreso.jsx';
 import RecuperarClave from './view/Cuenta/Recuperacion/RecuperarClave.jsx';
 import MiCuenta from './view/Cuenta/MiCuenta/MiCuenta.jsx';
 import Admin from './view/Cuenta/Admin/Admin.jsx';
-import ProtectedRoute from './context/ProtectedRoute.jsx';
+import ProtectedRoute from './context/appContext/allContext/ProtectedRoute.jsx';
 import ScrollToTop from './components/generals/scroll/ScrollToTop.jsx';
 import FavoriteProducts from './view/Cuenta/MiCuenta/FavoriteProducts.jsx';
 import ProductDetail from './view/Tienda/Products/ProductDetail.jsx';
 import CartDetail from './view/Tienda/CartDetails/CartDetail.jsx';
 import PedidoDetalle from './components/main/account/PedidoDetalle.jsx';
-
+import { AppProvider } from './context/appContext/AppContext.jsx';
 
 function App() {
 
   return (
     <>
-      <ContextProvider>
-        <ProductProvider>
-        <FavoritesProvider>
-        <CartProvider>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-            <nav>
-              <NavbarDiff/>
-            </nav>
-            <section style={{ marginTop: '50px' }}>
-                    <HeaderSection />
-                    <DesktopMenu />
-            </section>
-            <main>
+      <AppProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <nav>
+            <NavbarDiff />
+          </nav>
+          <section style={{ marginTop: '50px' }}>
+            <HeaderSection />
+            <DesktopMenu />
+          </section>
+          <main>
               <ScrollToTop />
                 <Routes>
                     <Route
@@ -108,10 +106,7 @@ function App() {
             </footer>
             </ThemeProvider>
           <ToastContainer />
-      </CartProvider>
-      </FavoritesProvider>
-      </ProductProvider>
-      </ContextProvider>
+      </AppProvider>
     </>
   )
 }

@@ -8,7 +8,7 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useFavorites } from "../../../../context/FavoriteContext.jsx";
+import { useFavorites } from "../../../../context/appContext/allContext/FavoriteContext.jsx";
 import ActionAddToCartButton from "../../buttons/addToCartButton/ActionAddToCartButton.jsx";
 
 const ProductCard = ({ product, onOpenModal }) => {

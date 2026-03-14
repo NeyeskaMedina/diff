@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { handleAddToCart } from "../../../../assets/utils/CartUtils.js";
 import AddToCartButton from "../../../generals/buttons/addToCartButton/AddToCartButton.jsx";
 import AddToCartButtonIcon from "../../../generals/buttons/addToCartButton/AddToCartButtonIcon.jsx";
-import { useCart } from "../../../../context/CartContext.jsx";
+import { useCart } from "../../../../context/appContext/allContext/CartContext.jsx";
 
 const ActionAddToCartButton = ({ product, cantidad = 1 }) => {
   const [hovered, setHovered] = useState(false);
