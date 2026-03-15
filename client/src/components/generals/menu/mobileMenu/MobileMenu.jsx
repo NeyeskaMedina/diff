@@ -13,6 +13,8 @@ import {
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import FormsLogin from "../../forms/FormsLogin.jsx"
+import GoogleLoginButton from "../../buttons/googleButtons/GoogleLoginButton.jsx"
+import CrearCuentaBtx from "../../buttons/authButtons/CrearCuentaBtx.jsx"
 
 // ✅ IMPORTAMOS TU BUSCADOR REAL
 import SearchBar from "../../search/SearchBar";
@@ -41,7 +43,7 @@ const accountMenu = [
 
 const MobileMenu = ({ open, onClose, isAuthenticated }) => {
   const [openAccount, setOpenAccount] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
+  const [openLogin, setOpenLogin] = useState(true);
 
   const toggleLogin = () => {
     setOpenLogin(!openLogin);
@@ -114,18 +116,17 @@ const MobileMenu = ({ open, onClose, isAuthenticated }) => {
                   {openLogin ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
               </ListItem>
-                        
+
               <Collapse in={openLogin} timeout="auto" unmountOnExit>
                 <Box sx={{ px: 2 }}>
                   <FormsLogin />
+                  <GoogleLoginButton />
                 </Box>
               </Collapse>
 
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="/registro">
-                  <ListItemText primary="Crear cuenta" />
-                </ListItemButton>
-              </ListItem>
+              <Box sx={{ px: 2 }}>
+                  <CrearCuentaBtx />
+                </Box>
             </>
           )}
 
