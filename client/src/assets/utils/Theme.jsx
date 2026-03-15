@@ -13,6 +13,7 @@ const theme = createTheme({
       checkColor: "var(--product-btn-addToCart)",
       iconModalColor: "var(--productModal-icon-color)",
       iconModalColorBg: "var(--productModal-icon-color-bg)",
+      ingresarBtx: "var(--ingresar-btx)"
     },
   },
    customGradients: {

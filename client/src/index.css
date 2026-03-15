@@ -44,6 +44,9 @@ html{
     --menu-color: black;
     --menu-hover: #42d40d;
 
+    /* BUTTONS */
+    --ingresar-btx: #78548f;
+
     /* FOOTER */
     --footer-bg: linear-gradient(90deg, #FFD6E0, #E0BBE4, #D0F0C0);
     --footer-color: black;

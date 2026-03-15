@@ -12,6 +12,7 @@ import {
 
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import FormsLogin from "../../forms/FormsLogin.jsx"
 
 // ✅ IMPORTAMOS TU BUSCADOR REAL
 import SearchBar from "../../search/SearchBar";
@@ -38,8 +39,14 @@ const accountMenu = [
   { label: "Salir", path: "/mi-cuenta/logout" },
 ];
 
-const MobileMenu = ({ open, onClose }) => {
+const MobileMenu = ({ open, onClose, isAuthenticated }) => {
   const [openAccount, setOpenAccount] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+
+  const toggleLogin = () => {
+    setOpenLogin(!openLogin);
+  };
+
 
   const toggleAccount = () => {
     setOpenAccount(!openAccount);
@@ -49,14 +56,14 @@ const MobileMenu = ({ open, onClose }) => {
     <Drawer anchor="left" open={open} onClose={onClose}>
       <Box sx={{ width: 280, p: 2 }}>
 
-        {/* ✅ BUSCADOR REAL */}
+        {/* Buscador */}
         <Box sx={{ mb: 2 }}>
           <SearchBar onProductSelect={onClose} />
         </Box>
 
         <Divider />
 
-        {/* Categorías */}
+        {/* ✅ Categorías SIEMPRE visibles */}
         <List>
           {categories.map((item) => (
             <ListItem key={item.label} disablePadding>
@@ -65,30 +72,63 @@ const MobileMenu = ({ open, onClose }) => {
               </ListItemButton>
             </ListItem>
           ))}
+        </List>
 
-          {/* Mi Cuenta */}
-          <ListItem disablePadding>
-            <ListItemButton onClick={toggleAccount}>
-              <ListItemText primary="Mi Cuenta" />
-              {openAccount ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-          </ListItem>
+        <Divider />
 
-          <Collapse in={openAccount} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {accountMenu.map((sub) => (
-                <ListItem key={sub.label} disablePadding>
-                  <ListItemButton
-                    sx={{ pl: 4 }}
-                    component="a"
-                    href={sub.path}
-                  >
-                    <ListItemText primary={sub.label} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Collapse>
+        {/* ✅ Sección cuenta */}
+        <List>
+
+          {isAuthenticated ? (
+            <>
+              {/* Mi cuenta desplegable */}
+              <ListItem disablePadding>
+                <ListItemButton onClick={toggleAccount}>
+                  <ListItemText primary="Mi Cuenta" />
+                  {openAccount ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+              </ListItem>
+
+              <Collapse in={openAccount} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {accountMenu.map((sub) => (
+                    <ListItem key={sub.label} disablePadding>
+                      <ListItemButton
+                        sx={{ pl: 4 }}
+                        component="a"
+                        href={sub.path}
+                      >
+                        <ListItemText primary={sub.label} />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Collapse>
+            </>
+          ) : (
+            <>
+              {/* Login si no está logueado */}
+              <ListItem disablePadding>
+                <ListItemButton onClick={toggleLogin}>
+                  <ListItemText primary="Iniciar sesión" />
+                  {openLogin ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+              </ListItem>
+                        
+              <Collapse in={openLogin} timeout="auto" unmountOnExit>
+                <Box sx={{ px: 2 }}>
+                  <FormsLogin />
+                </Box>
+              </Collapse>
+
+              <ListItem disablePadding>
+                <ListItemButton component="a" href="/registro">
+                  <ListItemText primary="Crear cuenta" />
+                </ListItemButton>
+              </ListItem>
+            </>
+          )}
+
         </List>
       </Box>
     </Drawer>

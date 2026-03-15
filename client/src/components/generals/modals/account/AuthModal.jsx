@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  Drawer,
-  Box,
-  Typography,
-  IconButton,
-  Button,
-  TextField,
-} from "@mui/material";
+import { Drawer, Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import GoogleLoginButton from "../../buttons/googleButtons/GoogleLoginButton.jsx";
 
+import FormsLogin from "../../forms/FormsLogin.jsx";
+import AuthButtons from "../../buttons/authButtons/AuthButtons.jsx";
+ 
 const AuthModal = ({ open, onClose }) => {
   return (
     <Drawer
@@ -30,71 +25,17 @@ const AuthModal = ({ open, onClose }) => {
         },
       }}
     >
-      {/* Header */}
+      
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Typography variant="h6" fontWeight="bold">
-          Iniciar Sesión / Crear Cuenta
-        </Typography>
+        <Typography variant="h6">Iniciar Sesión</Typography>
         <IconButton onClick={onClose}>
           <CloseIcon />
         </IconButton>
       </Box>
 
-      {/* Formulario */}
-      <Box mt={3} component="form">
-        <TextField
-          label="Correo electrónico"
-          type="email"
-          fullWidth
-          margin="normal"
-          size="small"
-        />
-        <TextField
-          label="Contraseña"
-          type="password"
-          fullWidth
-          margin="normal"
-          size="small"
-        />
+      <FormsLogin />
+      <AuthButtons />
 
-        <Button
-          variant="contained"
-          color="secondary"
-          fullWidth
-          sx={{ mt: 2, py: 1.2, borderRadius: "8px" }}
-        >
-          Ingresar
-        </Button>
-        {/* Botón de Google */}
-
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-        <IconButton>
-          <GoogleLoginButton />
-        </IconButton>
-      </Box>
-
-        <Typography
-          variant="body2"
-          textAlign="center"
-          mt={2}
-          sx={{ cursor: "pointer", color: "primary.main" }}
-        >
-          ¿Olvidaste tu contraseña?
-        </Typography>
-      </Box>
-
-      {/* Registro */}
-      <Box mt={3} textAlign="center">
-        <Typography variant="body2">¿No tienes una cuenta?</Typography>
-        <Button
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          sx={{ mt: 1, py: 1.2, borderRadius: "8px" }}
-        >
-          Crear cuenta
-        </Button>
-      </Box>
     </Drawer>
   );
 };
