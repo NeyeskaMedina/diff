@@ -125,7 +125,17 @@ const MobileMenu = ({ open, onClose, isAuthenticated }) => {
               </Collapse>
 
               <Box sx={{ px: 2 }}>
-                  <CrearCuentaBtx />
+                  <CrearCuentaBtx 
+                      variant="outlined"
+                      fullWidth={true}
+                      sx={{ 
+                        mt: 1, 
+                        py: 1.2, 
+                        borderRadius: "8px" ,
+                        color: "custom.ingresarBtx",
+                        borderColor: "custom.ingresarBtx"
+                      }}
+                  />
                 </Box>
             </>
           )}
