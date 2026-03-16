@@ -10,15 +10,15 @@ export const AppProvider = ({ children }) => {
 
   return (
     <GoogleAuthProvider>
+      <ContextProvider>
         <ProductProvider>
           <FavoritesProvider>
             <CartProvider>
-              <ContextProvider>
-                {children}
-              </ContextProvider>
+              {children}
             </CartProvider>
           </FavoritesProvider>
         </ProductProvider>
+      </ContextProvider>
     </GoogleAuthProvider>
   );
 
