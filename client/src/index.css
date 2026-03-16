@@ -47,6 +47,9 @@ html{
     /* BUTTONS */
     --ingresar-btx: #78548f;
 
+    /* SWAL */
+    --swal-exito: linear-gradient(90deg, #FFD6E0, #E0BBE4, #D0F0C0)
+
     /* FOOTER */
     --footer-bg: linear-gradient(90deg, #FFD6E0, #E0BBE4, #D0F0C0);
     --footer-color: black;
@@ -55,7 +58,7 @@ html{
 
     /* GLOBALES */
     /* BADGED PRODUCTS */
-    --badge-bg:#183f0ab9;
+    --badge-bg: #183f0ab9;
     --badge-color: white;
 
 }

@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
 
-const IngresarBtx = ({ onClick, sx, disabled, fullWidth }) => {
+const IngresarBtx = ({ onClick, sx, disabled, fullWidth, type }) => {
   return (
     <Button
+      type={type}
       variant="contained"
       sx={sx}
       onClick={onClick}

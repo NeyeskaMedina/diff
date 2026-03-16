@@ -1,59 +1,59 @@
-import { useEffect, useState } from "react";
-import { getLogin } from "../apiRestDiff/Get/getLogin";
+// import { useEffect, useState } from "react";
+// import { getLogin } from "../apiRestDiff/Get/getLogin";
 
-export const useLoginController = () => {
+// export const useLoginController = () => {
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+//   const [user, setUser] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    const axiosLogin = async () => {
+//     const axiosLogin = async () => {
 
-      try {
+//       try {
 
-        const { response, error } = await getLogin();
+//         const { response, error } = await getLogin();
 
-        if (error) {
-          throw error;
-        }
+//         if (error) {
+//           throw error;
+//         }
 
-        if (response?.usuario) {
+//         if (response?.usuario) {
 
-          const formattedUser = {
-            id: response.usuario.id,
-            nombre: response.usuario.nombre,
-            email: response.usuario.email,
-            role: response.usuario.role || ""
-          };
+//           const formattedUser = {
+//             id: response.usuario.id,
+//             nombre: response.usuario.nombre,
+//             email: response.usuario.email,
+//             role: response.usuario.role || ""
+//           };
 
-          setUser(formattedUser);
+//           setUser(formattedUser);
 
-        } else {
+//         } else {
 
-          setUser(null);
+//           setUser(null);
 
-        }
+//         }
 
-      } catch (err) {
+//       } catch (err) {
 
-        console.error("Error al obtener usuario:", err);
-        setError(err);
+//         console.error("Error al obtener usuario:", err);
+//         setError(err);
 
-      } finally {
+//       } finally {
 
-        setLoading(false);
+//         setLoading(false);
 
-      }
+//       }
 
-    };
+//     };
 
-    axiosLogin();
+//     axiosLogin();
 
-  }, []);
+//   }, []);
 
-  return { user, loading, error };
+//   return { user, loading, error };
 
-};
+// };
 

@@ -5,14 +5,11 @@ import { useState, useEffect } from 'react';
 export const UserContext = createContext({});
 
 export const ContextProvider = ( {children} ) => {
-        const [ openModalProduct, setOpenModalProduct ] = useState(false);
-        const [cartItems, setCartItems] = useState([]);
+        const [ userLogin, setUserLogin ] = useState([]);
 
         const sharedContext = {
-            openModalProduct,
-            setOpenModalProduct,
-            cartItems,
-            setCartItems,
+            userLogin,
+            setUserLogin,
         }
     return (
         <UserContext.Provider value={sharedContext}>

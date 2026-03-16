@@ -1,22 +1,30 @@
-import axios from "axios";
-const URL = import.meta.env.VITE_URL_BACK;
+import { api } from "../axios";
 
-const postLogin = async ({ username, password }) => {
-    console.log(username, password);
-    
-    try {
-        const response = await axios.post(
-            `${URL}/login`,
-            { username, password },
-            {
-                headers: { "Content-Type": "application/json" }
-            }
-        );
-        return { response: response.data, error: null, loading: false }
-    } catch (err) {
-        console.error("❌ Error al ingresar", err.response?.data || err.message);
-        return { response: [], error: "Credenciales incorrectas", loading: false };
-    }
-}
+const postLogin = async ({ useremail, password }) => {
+
+
+  try {
+
+    const { data } = await api.post("/login", {
+      useremail,
+      password
+    });
+
+    return {
+      response: data,
+      error: null
+    };
+
+  } catch (err) {
+
+    console.error("❌ Error al ingresar:", err.response?.data || err.message);
+
+    return {
+      response: null,
+      error: err.response?.data?.message || "Credenciales incorrectas"
+    };
+
+  }
+};
 
 export { postLogin };
