@@ -26,14 +26,14 @@ const HeaderSection = () => {
   const { favorites } = useFavorites();
   const navigate = useNavigate();
 
-  // 👉 Estado de autenticación
+  // Estado de autenticación
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // 👉 Estado para menú/logueado
+  // Estado para menú/logueado
   const [anchorEl, setAnchorEl] = useState(null);
   const openAccountMenu = Boolean(anchorEl);
 
-  // 👉 Estado para modal login/no logueado
+  // Estado para modal login/no logueado
   const [openAuthModal, setOpenAuthModal] = useState(false);
 
   const handleAccountClick = (event) => {
@@ -48,15 +48,15 @@ const HeaderSection = () => {
     setAnchorEl(null);
   };
 
-  // 👉 Estado carrito
+  // Estado carrito
   const [openCart, setOpenCart] = useState(false);
   const handleOpenCart = () => setOpenCart(true);
   const handleCloseCart = () => setOpenCart(false);
 
-  // ✅ Cantidad de favoritos (si el contexto devuelve un array)
+  // Cantidad de favoritos (si el contexto devuelve un array)
   const favoriteCount = favorites?.length || 0;
 
-  // ✅ Función para abrir la vista de favoritos
+  // Función para abrir la vista de favoritos
   const handleOpenFavorites = () => {
     if (isAuthenticated) {
       navigate("/favoritos");
@@ -105,7 +105,7 @@ const HeaderSection = () => {
 
             {/* Iconos */}
             <Box sx={{ display: "flex", gap: 1 }}>
-              {/* 👉 Mi Cuenta */}
+              {/*  Mi Cuenta */}
               <IconButton color="inherit" onClick={handleAccountClick}>
                 <AccountCircleIcon />
               </IconButton>
