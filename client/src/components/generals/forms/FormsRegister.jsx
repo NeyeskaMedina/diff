@@ -16,10 +16,17 @@ import {
 
 import {
   SwalError,
-  SwalExito
+  SwalExito,
+  SwalRegistrado,
+  SwalInformation,
 } from "../../../assets/utils/Swal";
 
+import { postRegister } from "../../../assets/apiRestDiff/Post/postRegister";
+import { useAuth } from "../../../context/appContext/allContext/AuthContext.jsx";
+
 const FormsRegister = () => {
+
+  const { login } = useAuth();
 
   const [form, setForm] = useState({
     username: "",
@@ -44,47 +51,38 @@ const FormsRegister = () => {
   // -------------------------
   // VALIDACIONES
   // -------------------------
-
   const validateField = (name, value) => {
 
     let message = "";
 
     if (name === "username") {
-
       if (!value.trim()) {
         message = "El nombre de usuario es obligatorio";
       }
-
     }
 
     if (name === "email") {
-
       if (!value.trim()) {
         message = "El correo es obligatorio";
       } else if (!validateEmail(value)) {
         message = "Correo electrónico inválido";
       }
-
     }
 
     if (name === "password") {
-
       if (!value.trim()) {
         message = "La contraseña es obligatoria";
       } else if (!validatePassword(value)) {
         message = "Debe tener mínimo 6 caracteres";
       }
-
     }
 
     return message;
-
   };
 
   // -------------------------
   // HANDLE CHANGE
   // -------------------------
-
   const handleChange = ({ target }) => {
 
     const { name, value } = target;
@@ -100,13 +98,11 @@ const FormsRegister = () => {
       ...prev,
       [name]: errorMessage
     }));
-
   };
 
   // -------------------------
   // HANDLE BLUR
   // -------------------------
-
   const handleBlur = ({ target }) => {
 
     const { name, value } = target;
@@ -122,13 +118,11 @@ const FormsRegister = () => {
       ...prev,
       [name]: errorMessage
     }));
-
   };
 
   // -------------------------
   // VALIDAR FORM
   // -------------------------
-
   const isFormValid =
     form.username &&
     form.email &&
@@ -140,7 +134,6 @@ const FormsRegister = () => {
   // -------------------------
   // SUBMIT
   // -------------------------
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();
@@ -158,18 +151,55 @@ const FormsRegister = () => {
         password: form.password.trim()
       };
 
-      console.log("Datos para registrar:", cleanData);
+      const { response, error } = await postRegister(cleanData);
 
-      SwalExito("Registro exitoso");
+      // USUARIO YA EXISTE
+      if (error?.status === 409 || error?.message?.includes("exist")) {
+        
+        SwalInformation(
+          "Parece que ya tienes una cuenta con este correo. ¡Debes iniciar sesion con tu cuenta!"
+        );
+        
+        return;
+      }
+
+      // REGISTRO EXITOSO
+      if (response?.success || response?.token) {
+
+        const result = await SwalRegistrado({
+          title: "¡Registro exitoso!",
+          text: "¿Deseas iniciar sesión ahora?",
+          icon: "success",
+          confirmText: "Sí, iniciar sesión",
+          cancelText: "Más tarde"
+        });
+
+        if (result.isConfirmed) {
+
+          // LOGIN AUTOMÁTICO SI HAY TOKEN
+          if (response?.token) {
+
+            login({
+              token: response.token,
+              user: response.user || { email: form.email }
+            });
+
+            SwalExito("Inicio de sesión exitoso");
+          }
+        }
+
+        return;
+      }
+
+      // ERROR 
+      SwalError(error || "Error al registrarte");
 
     } catch (err) {
 
       console.error(err);
-
-      SwalError("Error al registrar usuario");
+      SwalError("Error al conectar con el servidor");
 
     }
-
   };
 
   return (
@@ -177,7 +207,6 @@ const FormsRegister = () => {
     <Box mt={3} component="form" onSubmit={handleSubmit}>
 
       {/* USERNAME */}
-
       <TextField
         label="Nombre de usuario"
         name="username"
@@ -192,7 +221,6 @@ const FormsRegister = () => {
       />
 
       {/* EMAIL */}
-
       <TextField
         label="Correo electrónico"
         name="email"
@@ -208,7 +236,6 @@ const FormsRegister = () => {
       />
 
       {/* PASSWORD */}
-
       <TextField
         label="Contraseña"
         name="password"
@@ -224,21 +251,18 @@ const FormsRegister = () => {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-
               <IconButton
                 onClick={() => setShowPassword(!showPassword)}
                 edge="end"
               >
                 {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
-
             </InputAdornment>
           )
         }}
       />
 
       {/* BOTÓN */}
-
       <Button
         type="submit"
         variant="outlined"
@@ -262,7 +286,6 @@ const FormsRegister = () => {
       </Button>
 
       {/* TEXTO LOGIN */}
-
       <Typography
         variant="body2"
         textAlign="center"
@@ -273,9 +296,7 @@ const FormsRegister = () => {
       </Typography>
 
     </Box>
-
   );
-
 };
 
 export default FormsRegister;
