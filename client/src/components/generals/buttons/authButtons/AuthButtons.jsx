@@ -3,12 +3,12 @@ import { Box, Typography, Button } from "@mui/material";
 import GoogleLoginButton from "../../buttons/googleButtons/GoogleLoginButton.jsx";
 import CrearCuentaBtx from "./CrearCuentaBtx.jsx"
 
-const AuthButtons = () => {
+const AuthButtons = ({ onClose }) => {
   return (
     <>
       {/* Google */}
       <Box mt={2} display="flex" justifyContent="center">
-        <GoogleLoginButton />
+        <GoogleLoginButton onClose={onClose} />
       </Box>
 
       {/* Registro */}

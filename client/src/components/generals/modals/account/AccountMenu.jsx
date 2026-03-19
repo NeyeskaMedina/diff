@@ -1,7 +1,15 @@
 import React from "react";
 import { Menu, MenuItem, Divider } from "@mui/material";
 
-const AccountMenu = ({ anchorEl, open, onClose }) => {
+const AccountMenu = ({
+  anchorEl,
+  open,
+  onClose,
+  onProfile,
+  onDashboard,
+  onLogout,
+  isAdmin
+}) => {
   return (
     <Menu
       anchorEl={anchorEl}
@@ -9,20 +17,61 @@ const AccountMenu = ({ anchorEl, open, onClose }) => {
       onClose={onClose}
       PaperProps={{ sx: { mt: 1.5, minWidth: 200 } }}
     >
-      <MenuItem component="a" href="/mi-cuenta" onClick={onClose}>
+      {/* Mi cuenta */}
+      <MenuItem
+        onClick={() => {
+          onProfile();
+        }}
+      >
         Mi cuenta
       </MenuItem>
-      <MenuItem component="a" href="/mi-cuenta/pedidos" onClick={onClose}>
+
+      {/* Pedidos */}
+      <MenuItem
+        onClick={() => {
+          onProfile(); // o crea otra función si quieres otra ruta
+        }}
+      >
         Pedidos
       </MenuItem>
-      <MenuItem component="a" href="/mi-cuenta/direcciones" onClick={onClose}>
+
+      {/* Direcciones */}
+      <MenuItem
+        onClick={() => {
+          onProfile();
+        }}
+      >
         Direcciones
       </MenuItem>
-      <MenuItem component="a" href="/mi-cuenta/configuracion" onClick={onClose}>
+
+      {/* Configuración */}
+      <MenuItem
+        onClick={() => {
+          onProfile();
+        }}
+      >
         Configuración
       </MenuItem>
+
+      {/* 🔥 SOLO ADMIN */}
+      {isAdmin && onDashboard && (
+        <MenuItem
+          onClick={() => {
+            onDashboard();
+          }}
+        >
+          Panel Admin
+        </MenuItem>
+      )}
+
       <Divider />
-      <MenuItem component="a" href="/mi-cuenta/logout" onClick={onClose}>
+
+      {/* Logout */}
+      <MenuItem
+        onClick={() => {
+          onLogout();
+        }}
+      >
         Salir
       </MenuItem>
     </Menu>
