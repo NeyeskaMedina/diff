@@ -1,34 +1,66 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, Divider, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Register from "../../../components/section/login/Register";
-import Login from "../../../components/section/login/Login";
+import FormsRegister from "../../../components/generals/forms/FormsRegister";
+import FormsLogin from "../../../components/generals/forms/FormsLogin";
 
 const Ingreso = () => {
-  const [view, setView] = useState("registro"); // "registro" o "ingreso"
+  const [view, setView] = useState("registro");
   const theme = useTheme();
-  const isSmall = useMediaQuery(theme.breakpoints.down("md")); // md ~ 900px
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box
       display="flex"
       flexDirection={isSmall ? "column-reverse" : "row"}
+      alignItems="stretch"
+      justifyContent="center"
       gap={4}
-      p={4}
-      sx={{ border: "1px solid #eee", borderRadius: 2, boxShadow: 2 }}
+      p={isSmall ? 2 : 6}
+      sx={{
+        maxWidth: "1200px",
+        margin: "auto",
+      }}
     >
-      {/* Columna izquierda (formularios) */}
-      <Box flex={1}>
-        <Typography variant="h6" gutterBottom>
+      {/* CARD FORMULARIO */}
+      <Box
+        flex={1}
+        sx={{
+          background: "white",
+          borderRadius: "14px",
+          padding: isSmall ? "20px" : "40px",
+          boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+          border: "1px solid #eee",
+        }}
+      >
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{
+            color: "var(--label-colorTxF)",
+            fontWeight: "bold",
+            mb: 3,
+          }}
+        >
           {view === "registro" ? "REGISTRARSE" : "INGRESAR"}
         </Typography>
-        {view === "registro" ? <Register /> : <Login />}
+
+        {view === "registro" ? <FormsRegister /> : <FormsLogin />}
       </Box>
 
-      {/* Divider solo en pantallas grandes */}
-      {!isSmall && <Divider orientation="vertical" flexItem />}
+      {/* DIVIDER SOLO DESKTOP */}
+      {!isSmall && (
+        <Divider
+          orientation="vertical"
+          flexItem
+          sx={{
+            borderColor: "var(--border-colorTxF)",
+            opacity: 0.3,
+          }}
+        />
+      )}
 
-      {/* Columna derecha (texto dinámico) */}
+      {/* CARD INFORMACIÓN */}
       <Box
         flex={1}
         display="flex"
@@ -36,16 +68,36 @@ const Ingreso = () => {
         justifyContent="center"
         alignItems="center"
         textAlign="center"
-        p={2}
-        mt={isSmall ? 4 : 0}
+        sx={{
+          background: "var(--header-bg)",
+          borderRadius: "14px",
+          padding: isSmall ? "20px" : "40px",
+          boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+        }}
       >
-        <Typography variant="h6" gutterBottom>
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{
+            color: "var(--label-colorTxF)",
+            fontWeight: "bold",
+          }}
+        >
           REGISTRO
         </Typography>
-        <Typography variant="body2" color="text.secondary" mb={3}>
+
+        <Typography
+          variant="body1"
+          mb={4}
+          sx={{
+            maxWidth: "420px",
+            color: "black",
+            lineHeight: 1.6,
+          }}
+        >
           {view === "registro"
-            ? "Registrarse en este sitio le permite acceder al estado y al historial de su pedido. Simplemente complete los campos a continuación y obtendremos una nueva cuenta configurada para usted en poco tiempo."
-            : "Acceda con su cuenta registrada para ver el estado y el historial de sus pedidos."}
+            ? "Registrarse en este sitio le permite acceder al estado y al historial de su pedido. Complete los campos y en pocos segundos tendrá su cuenta lista."
+            : "Acceda con su cuenta registrada para revisar el estado y el historial de sus pedidos."}
         </Typography>
 
         {view === "registro" ? (
@@ -53,11 +105,15 @@ const Ingreso = () => {
             variant="contained"
             onClick={() => setView("ingreso")}
             sx={{
-              background: "linear-gradient(to right, #FFD54F, #FBC02D)",
-              borderRadius: "30px",
-              px: 4,
+              background: "var(--ingresar-btx)",
+              borderRadius: "40px",
+              px: 5,
+              py: 1.5,
+              fontWeight: "bold",
+              fontSize: "14px",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
               "&:hover": {
-                background: "linear-gradient(to right, #FFCA28, #F9A825)",
+                background: "var(--productModal-icon-color)",
               },
             }}
           >
@@ -68,11 +124,15 @@ const Ingreso = () => {
             variant="contained"
             onClick={() => setView("registro")}
             sx={{
-              background: "linear-gradient(to right, #FFD54F, #FBC02D)",
-              borderRadius: "30px",
-              px: 4,
+              background: "var(--ingresar-btx)",
+              borderRadius: "40px",
+              px: 5,
+              py: 1.5,
+              fontWeight: "bold",
+              fontSize: "14px",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
               "&:hover": {
-                background: "linear-gradient(to right, #FFCA28, #F9A825)",
+                background: "var(--productModal-icon-color)",
               },
             }}
           >

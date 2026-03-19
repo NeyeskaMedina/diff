@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   IconButton,
@@ -16,53 +16,70 @@ import AuthModal from "../../generals/modals/account/AuthModal";
 import AccountMenu from "../../generals/modals/account/AccountMenu";
 import { useCart } from "../../../context/appContext/allContext/CartContext.jsx";
 import { useFavorites } from "../../../context/appContext/allContext/FavoriteContext.jsx";
-// ✅ Importamos useNavigate para redirigir
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/appContext/allContext/AuthContext.jsx";
 
 const HeaderSection = () => {
+
   const isMobile = useMediaQuery("(max-width:900px)");
   const [menuOpen, setMenuOpen] = useState(false);
   const { cartItems } = useCart();
   const { favorites } = useFavorites();
   const navigate = useNavigate();
 
-  // Estado de autenticación
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // 🔥 AUTH
+  const { user, logout } = useAuth();
+  const isAuthenticated = !!user?.email; // ✅ true si hay usuario, false si no
+  console.log("🔐", user);
 
-  // Estado para menú/logueado
+  const isAdmin = user?.rol === "admin";
+
+  // 🔹 menú usuario
   const [anchorEl, setAnchorEl] = useState(null);
   const openAccountMenu = Boolean(anchorEl);
 
-  // Estado para modal login/no logueado
+  // 🔹 modal login
   const [openAuthModal, setOpenAuthModal] = useState(false);
 
   const handleAccountClick = (event) => {
     if (isAuthenticated) {
-      setAnchorEl(event.currentTarget); // Abre menú
+      setAnchorEl(event.currentTarget);
     } else {
-      setOpenAuthModal(true); // Abre modal login
+      setOpenAuthModal(true);
     }
   };
 
-  const handleAccountClose = () => {
-    setAnchorEl(null);
-  };
+  const handleAccountClose = () => setAnchorEl(null);
 
-  // Estado carrito
+  // 🔹 carrito
   const [openCart, setOpenCart] = useState(false);
   const handleOpenCart = () => setOpenCart(true);
   const handleCloseCart = () => setOpenCart(false);
 
-  // Cantidad de favoritos (si el contexto devuelve un array)
   const favoriteCount = favorites?.length || 0;
 
-  // Función para abrir la vista de favoritos
   const handleOpenFavorites = () => {
     if (isAuthenticated) {
       navigate("/favoritos");
     } else {
-      setOpenAuthModal(true); // Si no está logueado, pide login
+      setOpenAuthModal(true);
     }
+  };
+
+  // 🔥 navegación por rol
+  const handleDashboard = () => {
+    navigate("/admin"); // ruta admin
+    handleAccountClose();
+  };
+
+  const handleProfile = () => {
+    navigate("/mi-cuenta");
+    handleAccountClose();
+  };
+
+  const handleLogout = () => {
+    logout();
+    handleAccountClose();
   };
 
   return (
@@ -105,21 +122,36 @@ const HeaderSection = () => {
 
             {/* Iconos */}
             <Box sx={{ display: "flex", gap: 1 }}>
-              {/*  Mi Cuenta */}
+
+              {/* Cuenta */}
               <IconButton color="inherit" onClick={handleAccountClick}>
-                <AccountCircleIcon />
+                {user?.foto ? (
+                  <img
+                    src={user.foto}
+                    alt="user"
+                    style={{ width: 32, height: 32, borderRadius: "50%" }}
+                  />
+                ) : (
+                  <AccountCircleIcon />
+                )}
               </IconButton>
 
-              {/* Si está logueado → menú */}
+              {/* MENÚ USUARIO */}
               {isAuthenticated && (
                 <AccountMenu
                   anchorEl={anchorEl}
                   open={openAccountMenu}
                   onClose={handleAccountClose}
+
+                  // 🔥 acciones
+                  onProfile={handleProfile}
+                  onDashboard={isAdmin ? handleDashboard : null}
+                  onLogout={handleLogout}
+                  isAdmin={isAdmin}
                 />
               )}
 
-              {/* Si no está logueado → modal */}
+              {/* MODAL LOGIN */}
               {!isAuthenticated && (
                 <AuthModal
                   open={openAuthModal}
@@ -127,25 +159,26 @@ const HeaderSection = () => {
                 />
               )}
 
-              {/* ✅ Favoritos con cantidad desde el contexto */}
+              {/* FAVORITOS */}
               <IconButton color="inherit" onClick={handleOpenFavorites}>
                 <Badge badgeContent={favoriteCount} color="custom">
                   <FavoriteBorderIcon />
                 </Badge>
               </IconButton>
 
-              {/* Carrito */}
+              {/* CARRITO */}
               <IconButton color="inherit" onClick={handleOpenCart}>
                 <Badge badgeContent={cartItems.length} color="custom">
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
+
             </Box>
           </>
         )}
       </Box>
 
-      {/* Modal carrito */}
+      {/* MODAL CARRITO */}
       <CartModals
         open={openCart}
         onClose={handleCloseCart}

@@ -2,12 +2,11 @@ import React, { useState, useContext } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import ProductCard from "../../../components/generals/products/productCard/ProductCard.jsx";
 import ProductModal from "../../../components/generals/modals/products/productModal/ProductModal.jsx";
-import { UserContext } from "../../../context/appContext/allContext/UserContext.jsx";
 import { useFavorites } from "../../../context/appContext/allContext/FavoriteContext.jsx";
 
 const FavoriteProducts = () => {
   const { favorites } = useFavorites();
-  const { openModalProduct, setOpenModalProduct } = useContext(UserContext);
+  const [ openModalProduct, setOpenModalProduct ] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleOpenModal = (product) => {

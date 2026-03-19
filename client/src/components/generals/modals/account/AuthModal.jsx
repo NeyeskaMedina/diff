@@ -33,8 +33,8 @@ const AuthModal = ({ open, onClose }) => {
         </IconButton>
       </Box>
 
-      <FormsLogin />
-      <AuthButtons />
+      <FormsLogin onClose={onClose} />
+      <AuthButtons onClose={onClose} />
 
     </Drawer>
   );

@@ -1,71 +1,84 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
   Box,
   TextField,
   Typography,
   IconButton,
-  InputAdornment
+  InputAdornment,
+  Button
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-// import { useNavigate } from "react-router-dom";
-import IngresarBtx from "../buttons/authButtons/IngresarBtx.jsx";
-import {
-  SwalExito,
-  SwalError
-} from "../../../assets/utils/Swal.jsx";
-import { useAuth } from "../../../context/appContext/allContext/AuthContext.jsx";
-import { postLogin } from "../../../assets/apiRestDiff/Post/postLogin";
+
 import {
   validateEmail,
   validatePassword
 } from "../../../assets/utils/validations";
 
-const FormsLogin = ({ onClose }) => {
+import {
+  SwalError,
+  SwalExito
+} from "../../../assets/utils/Swal";
+
+const FormsRegister = () => {
 
   const [form, setForm] = useState({
+    username: "",
     email: "",
     password: ""
   });
 
   const [errors, setErrors] = useState({
+    username: "",
     email: "",
     password: ""
   });
 
   const [touched, setTouched] = useState({
+    username: false,
     email: false,
     password: false
   });
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const { login } = useAuth();
-
-  // const navigate = useNavigate();
-
   // -------------------------
   // VALIDACIONES
   // -------------------------
+
   const validateField = (name, value) => {
+
     let message = "";
 
+    if (name === "username") {
+
+      if (!value.trim()) {
+        message = "El nombre de usuario es obligatorio";
+      }
+
+    }
+
     if (name === "email") {
+
       if (!value.trim()) {
         message = "El correo es obligatorio";
       } else if (!validateEmail(value)) {
         message = "Correo electrónico inválido";
       }
+
     }
 
     if (name === "password") {
+
       if (!value.trim()) {
         message = "La contraseña es obligatoria";
       } else if (!validatePassword(value)) {
-        message = "La contraseña debe tener mínimo 6 caracteres";
+        message = "Debe tener mínimo 6 caracteres";
       }
+
     }
 
     return message;
+
   };
 
   // -------------------------
@@ -75,12 +88,14 @@ const FormsLogin = ({ onClose }) => {
   const handleChange = ({ target }) => {
 
     const { name, value } = target;
+
     setForm((prev) => ({
       ...prev,
       [name]: value
-    }))
+    }));
 
     const errorMessage = validateField(name, value);
+
     setErrors((prev) => ({
       ...prev,
       [name]: errorMessage
@@ -95,12 +110,14 @@ const FormsLogin = ({ onClose }) => {
   const handleBlur = ({ target }) => {
 
     const { name, value } = target;
+
     setTouched((prev) => ({
       ...prev,
       [name]: true
     }));
 
     const errorMessage = validateField(name, value);
+
     setErrors((prev) => ({
       ...prev,
       [name]: errorMessage
@@ -109,12 +126,14 @@ const FormsLogin = ({ onClose }) => {
   };
 
   // -------------------------
-  // VALIDAR FORM COMPLETO
+  // VALIDAR FORM
   // -------------------------
 
   const isFormValid =
+    form.username &&
     form.email &&
     form.password &&
+    !errors.username &&
     !errors.email &&
     !errors.password;
 
@@ -124,53 +143,53 @@ const FormsLogin = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!isFormValid) {
-    SwalError("Debes corregir los errores del formulario");
-    return;
-  }
+    if (!isFormValid) {
+      SwalError("Debes corregir los errores del formulario");
+      return;
+    }
 
-  try {
+    try {
 
-    const cleanData = {
-      useremail: form.email.trim(),
-      password: form.password.trim()
-    };
+      const cleanData = {
+        username: form.username.trim(),
+        useremail: form.email.trim(),
+        password: form.password.trim()
+      };
 
-    const { response, error } = await postLogin(cleanData);
+      console.log("Datos para registrar:", cleanData);
 
-    if (response?.token) {
+      SwalExito("Registro exitoso");
 
-      // ✅ USAR CONTEXTO
-      login({
-        token: response.token,
-        user: {
-          email: response.email
-        }
-      });
+    } catch (err) {
 
-      SwalExito("Inicio de sesión exitoso");
-      onClose();
+      console.error(err);
 
-    } else {
-
-      SwalError(error || "Credenciales incorrectas");
-      onClose();
+      SwalError("Error al registrar usuario");
 
     }
 
-  } catch (err) {
+  };
 
-    console.error(err);
-    SwalError("Error al conectar con el servidor");
-
-  }
-
-};
   return (
 
     <Box mt={3} component="form" onSubmit={handleSubmit}>
+
+      {/* USERNAME */}
+
+      <TextField
+        label="Nombre de usuario"
+        name="username"
+        fullWidth
+        margin="normal"
+        size="small"
+        value={form.username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={touched.username && Boolean(errors.username)}
+        helperText={touched.username && errors.username}
+      />
 
       {/* EMAIL */}
 
@@ -202,7 +221,6 @@ const FormsLogin = ({ onClose }) => {
         onBlur={handleBlur}
         error={touched.password && Boolean(errors.password)}
         helperText={touched.password && errors.password}
-
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -221,27 +239,37 @@ const FormsLogin = ({ onClose }) => {
 
       {/* BOTÓN */}
 
-      <IngresarBtx
+      <Button
         type="submit"
+        variant="outlined"
         fullWidth
         disabled={!isFormValid}
         sx={{
           mt: 2,
           py: 1.2,
-          borderRadius: "8px",
-          backgroundColor: "custom.ingresarBtx"
+          borderRadius: "10px",
+          borderColor: "var(--ingresar-btx)",
+          color: "var(--ingresar-btx)",
+          fontWeight: "bold",
+          "&:hover": {
+            borderColor: "var(--productModal-icon-color)",
+            color: "var(--productModal-icon-color)",
+            backgroundColor: "rgba(120,84,143,0.05)"
+          }
         }}
-      />
+      >
+        REGISTRARSE
+      </Button>
 
-      {/* RECUPERAR PASSWORD */}
+      {/* TEXTO LOGIN */}
 
       <Typography
         variant="body2"
         textAlign="center"
         mt={2}
-        sx={{ cursor: "pointer", color: "primary.main" }}
+        sx={{ color: "text.secondary" }}
       >
-        ¿Olvidaste tu contraseña?
+        ¿Ya tienes cuenta? Inicia sesión
       </Typography>
 
     </Box>
@@ -250,4 +278,4 @@ const FormsLogin = ({ onClose }) => {
 
 };
 
-export default FormsLogin;
+export default FormsRegister;
