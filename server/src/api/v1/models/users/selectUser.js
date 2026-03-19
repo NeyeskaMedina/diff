@@ -1,6 +1,6 @@
 import { pool } from "../../../../../config/db/connectionDB.js";
 
-export const selectUser = async (useremail) => {
+const selectUser = async (useremail) => {
 
   try {
 
@@ -9,7 +9,10 @@ export const selectUser = async (useremail) => {
         id_usuario,
         nombre,
         email,
-        clave
+        clave,
+        google_id,
+        foto
+
       FROM usuarios
       WHERE email = $1
       LIMIT 1
@@ -28,3 +31,4 @@ export const selectUser = async (useremail) => {
 
 };
 
+export { selectUser };
