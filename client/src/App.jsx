@@ -5,9 +5,6 @@ import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { ToastContainer } from 'react-toastify';
-// import { FavoritesProvider } from './context/appContext/allContext/FavoriteContext.jsx';
-// import { ProductProvider } from './context/appContext/allContext/ProductContext.jsx';
-// import { GoogleProvider } from './context/appContext/allContext/GoogleContex.jsx';
 import theme from "./assets/utils/Theme.jsx";
 import Home from "./view/Home/Home.jsx"
 import Tienda from "./view/Tienda/Tienda.jsx";

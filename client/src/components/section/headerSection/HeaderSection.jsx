@@ -105,7 +105,7 @@ const HeaderSection = () => {
               </Badge>
             </IconButton>
 
-            <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+            <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} isAuthenticated={isAuthenticated} />
           </>
         ) : (
           <>
@@ -142,7 +142,7 @@ const HeaderSection = () => {
                   open={openAccountMenu}
                   onClose={handleAccountClose}
 
-                  // 🔥 acciones
+                  // acciones
                   onProfile={handleProfile}
                   onDashboard={isAdmin ? handleDashboard : null}
                   onLogout={handleLogout}
