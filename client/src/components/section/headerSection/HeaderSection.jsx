@@ -27,18 +27,17 @@ const HeaderSection = () => {
   const { favorites } = useFavorites();
   const navigate = useNavigate();
 
-  // 🔥 AUTH
+  // AUTH
   const { user, logout } = useAuth();
   const isAuthenticated = !!user?.email; // ✅ true si hay usuario, false si no
-  console.log("🔐", user);
 
   const isAdmin = user?.rol === "admin";
 
-  // 🔹 menú usuario
+  // menú usuario
   const [anchorEl, setAnchorEl] = useState(null);
   const openAccountMenu = Boolean(anchorEl);
 
-  // 🔹 modal login
+  // modal login
   const [openAuthModal, setOpenAuthModal] = useState(false);
 
   const handleAccountClick = (event) => {
@@ -51,7 +50,7 @@ const HeaderSection = () => {
 
   const handleAccountClose = () => setAnchorEl(null);
 
-  // 🔹 carrito
+  // carrito
   const [openCart, setOpenCart] = useState(false);
   const handleOpenCart = () => setOpenCart(true);
   const handleCloseCart = () => setOpenCart(false);
@@ -66,7 +65,7 @@ const HeaderSection = () => {
     }
   };
 
-  // 🔥 navegación por rol
+  // navegación por rol
   const handleDashboard = () => {
     navigate("/admin"); // ruta admin
     handleAccountClose();
