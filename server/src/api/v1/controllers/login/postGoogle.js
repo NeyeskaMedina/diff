@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import { selectUser } from "../../models/users/selectUser.js";
+import { selectUser } from "../../models/users/users.js";
 import { 
         updateGoogleUser,
         createGoogleUser

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { selectUser } from "../../models/users/selectUser.js";
+import { selectUser } from "../../models/users/users.js";
 
 
 
@@ -49,7 +49,8 @@ export const postLogin = async (req, res) => {
       {
         id: user.id,
         email: user.email,
-        name: user.name
+        name: user.name,
+        role: user.role
       },
       process.env.JWT_SECRET,
       {
@@ -63,7 +64,8 @@ export const postLogin = async (req, res) => {
       user: {
         id: user.id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        role: user.role
       }
     });
 
