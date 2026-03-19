@@ -5,12 +5,12 @@ const createGoogleUser = async ({ name, email, sub, picture }) => {
   try {
 
     const query = `
-      INSERT INTO usuarios (nombre, email, google_id, foto)
-      VALUES ($1, $2, $3, $4)
-      RETURNING id_, nombre, email, foto
+      INSERT INTO usuarios (nombre, email, google_id, foto, role)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING id_, nombre, email, foto, role
     `;
 
-    const { rows } = await pool.query(query, [name, email, sub, picture]);
+    const { rows } = await pool.query(query, [name, email, sub, picture, "Cliente"]);
 
     return rows[0];
 
