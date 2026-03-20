@@ -30,13 +30,10 @@ const HeaderSection = () => {
   // AUTH
   const { user, logout } = useAuth();
   const isAuthenticated = !!user?.email; // ✅ true si hay usuario, false si no
-
   const isAdmin = user?.rol === "admin";
-
   // menú usuario
   const [anchorEl, setAnchorEl] = useState(null);
   const openAccountMenu = Boolean(anchorEl);
-
   // modal login
   const [openAuthModal, setOpenAuthModal] = useState(false);
 
@@ -105,7 +102,18 @@ const HeaderSection = () => {
               </Badge>
             </IconButton>
 
-            <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} isAuthenticated={isAuthenticated} />
+            <MobileMenu 
+                open={menuOpen} 
+                onClose={() => setMenuOpen(false)} 
+                isAuthenticated={isAuthenticated} 
+                onLogout={handleLogout}
+                isAdmin={isAdmin}
+              
+                // NUEVO
+                onNavigate={navigate}
+                onProfile={handleProfile}
+                onDashboard={handleDashboard}
+            />
           </>
         ) : (
           <>

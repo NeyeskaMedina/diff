@@ -231,6 +231,7 @@ const FormsLogin = ({ onClose }) => {
           borderRadius: "8px",
           backgroundColor: "custom.ingresarBtx"
         }}
+        name="Ingresar"
       />
 
       {/* RECUPERAR PASSWORD */}

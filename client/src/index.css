@@ -48,7 +48,7 @@ html{
     --ingresar-btx: #78548f;
 
     /* SWAL */
-    --swal-exito: linear-gradient(90deg, #FFD6E0, #E0BBE4, #D0F0C0);
+    --swal-exito: #2d880c;
     --swal-info: linear-gradient(90deg, #bababa 0%, #f4faef 50%, #d0edc1 100%);
 
     /* FOOTER */

@@ -56,7 +56,11 @@ function App() {
                     />
                     <Route
                         path="/pedidos/:id"
-                        element={<PedidoDetalle />}
+                        element={
+                           <ProtectedRoute>
+                             <PedidoDetalle />
+                           </ProtectedRoute>
+                        }
                     />
                     <Route
                         path ='/tienda'

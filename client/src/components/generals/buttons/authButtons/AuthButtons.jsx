@@ -20,6 +20,7 @@ const AuthButtons = ({ onClose }) => {
         <CrearCuentaBtx
             variant="outlined"
             fullWidth={true}
+            onClose={onClose}
             sx={{ 
               mt: 1, 
               py: 1.2, 

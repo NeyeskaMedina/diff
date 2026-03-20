@@ -31,8 +31,8 @@ export const SwalRegistrado = ({
   title,
   text,
   icon = "question",
-  confirmText = "Aceptar",
-  cancelText = "Cancelar"
+  confirmText,
+  cancelText
 }) => {
   return Swal.fire({
     title,

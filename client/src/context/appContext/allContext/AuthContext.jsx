@@ -1,9 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
   // Detectar sesión al cargar
@@ -28,7 +29,8 @@ export const AuthProvider = ({ children }) => {
   // Cerrar sesion y eliminar token del local storage
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");      
+    localStorage.removeItem("user");    
+    navigate("/"); // redirigir a home  
     setUser(null);
   };
 

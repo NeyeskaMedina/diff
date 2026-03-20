@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 
-const IngresarBtx = ({ onClick, sx, disabled, fullWidth, type }) => {
+const IngresarBtx = ({ onClick, sx, disabled, fullWidth, type, name }) => {
   return (
     <Button
       type={type}
@@ -10,7 +10,7 @@ const IngresarBtx = ({ onClick, sx, disabled, fullWidth, type }) => {
       disabled={disabled}
       fullWidth={fullWidth}
     >
-      Ingresar
+      {name}
     </Button>
   );
 };

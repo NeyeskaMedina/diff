@@ -32,16 +32,16 @@ const categories = [
   { label: "Contacto", path: "/contacto" },
 ];
 
-const accountMenu = [
-  { label: "Escritorio", path: "/mi-cuenta" },
-  { label: "Pedidos", path: "/mi-cuenta/pedidos" },
-  { label: "Descargas", path: "/mi-cuenta/descargas" },
-  { label: "Direcciones", path: "/mi-cuenta/direcciones" },
-  { label: "Detalles de la cuenta", path: "/mi-cuenta/detalles" },
-  { label: "Salir", path: "/mi-cuenta/logout" },
-];
-
-const MobileMenu = ({ open, onClose, isAuthenticated }) => {
+const MobileMenu = ({ 
+  open,
+  onClose,
+  isAuthenticated,
+  onLogout,
+  isAdmin,
+  onNavigate,
+  onProfile,
+  onDashboard
+ }) => {
   const [openAccount, setOpenAccount] = useState(false);
   const [openLogin, setOpenLogin] = useState(true);
 
@@ -69,7 +69,11 @@ const MobileMenu = ({ open, onClose, isAuthenticated }) => {
         <List>
           {categories.map((item) => (
             <ListItem key={item.label} disablePadding>
-              <ListItemButton component="a" href={item.path}>
+              <ListItemButton 
+                  onClick={() => {
+                    onNavigate(item.path);
+                    onClose(); //cierra el menú
+                  }}>
                 <ListItemText primary={item.label} />
               </ListItemButton>
             </ListItem>
@@ -93,18 +97,46 @@ const MobileMenu = ({ open, onClose, isAuthenticated }) => {
 
               <Collapse in={openAccount} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  {accountMenu.map((sub) => (
-                    <ListItem key={sub.label} disablePadding>
-                      <ListItemButton
-                        sx={{ pl: 4 }}
-                        component="a"
-                        href={sub.path}
-                      >
-                        <ListItemText primary={sub.label} />
-                      </ListItemButton>
-                    </ListItem>
-                  ))}
-                </List>
+
+                <ListItem disablePadding>
+                  <ListItemButton
+                    sx={{ pl: 4 }}
+                    onClick={() => {
+                      onProfile();
+                      onClose();
+                    }}
+                  >
+                    <ListItemText primary="Mi perfil" />
+                  </ListItemButton>
+                </ListItem>
+                  
+                {isAdmin && (
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      sx={{ pl: 4 }}
+                      onClick={() => {
+                        onDashboard();
+                        onClose();
+                      }}
+                    >
+                      <ListItemText primary="Admin Dashboard" />
+                    </ListItemButton>
+                  </ListItem>
+                )}
+
+                <ListItem disablePadding>
+                  <ListItemButton
+                    sx={{ pl: 4 }}
+                    onClick={() => {
+                      onLogout();
+                      onClose();
+                    }}
+                  >
+                    <ListItemText primary="Cerrar sesión" />
+                  </ListItemButton>
+                </ListItem>
+                  
+              </List>
               </Collapse>
             </>
           ) : (

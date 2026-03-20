@@ -18,7 +18,7 @@ const menuItems = [
 
 const DesktopMenu = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
-  const navigate = useNavigate(); // 👈 Hook para redirigir
+  const navigate = useNavigate();
 
   if (isMobile) return null;
 
@@ -39,7 +39,7 @@ const DesktopMenu = () => {
         <Typography
           key={index}
           variant="body1"
-          onClick={() => navigate(item.path)} // 👈 Redirige a la ruta
+          onClick={() => navigate(item.path)} 
           sx={{
             color: "var(--menu-color)",
             fontWeight: "bold",

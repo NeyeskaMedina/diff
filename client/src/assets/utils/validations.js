@@ -3,6 +3,10 @@ export const sedes = [
   'Iquique', 'Ovalle', 'Rancagua', 'Serena', 'Viña del mar'
 ].sort();
 
+export const validateName = (name) => {
+  const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s[A-Za-zÁÉÍÓÚáéíóúÑñ]*)*$/;
+  return regex.test(name.trim());
+};
 
 export const validateEmail = (email) => {
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
